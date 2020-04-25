@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using EntityCache.Assistence;
 
 namespace Shop_Windows
 {
@@ -16,7 +14,10 @@ namespace Shop_Windows
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            ClsCache.Init();
+
+            Application.Run(new frmMain());
         }
     }
 }
