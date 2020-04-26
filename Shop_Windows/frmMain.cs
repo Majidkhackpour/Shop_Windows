@@ -46,7 +46,7 @@ namespace Shop_Windows
         {
             try
             {
-                LoadNewForm(new frmShowCustomerGroups());
+                LoadNewForm(new frmShowCustomers());
             }
             catch (Exception ex)
             {

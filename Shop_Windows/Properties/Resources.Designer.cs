@@ -79,5 +79,15 @@ namespace Shop_Windows.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _563ba6c1_5628_4d77_92ef_f30aacf8c8de {
+            get {
+                object obj = ResourceManager.GetObject("563ba6c1-5628-4d77-92ef-f30aacf8c8de", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
