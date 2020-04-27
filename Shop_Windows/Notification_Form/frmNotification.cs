@@ -23,8 +23,8 @@ namespace Shop_Windows.Notification_Form
         public static frmNotification PublicInfo => NestedPublicInfo.PublicInfo;
         public void ShowMessage(string message)
         {
-            lblText.Text = message;
-            ShowDialog();
+            var a = new frmNotification {lblText = {Text = message}};
+            a.Show();
         }
         private void ClosingTimer_Tick(object sender, System.EventArgs e)
         {

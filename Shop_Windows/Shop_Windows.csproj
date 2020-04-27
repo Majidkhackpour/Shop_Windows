@@ -125,6 +125,12 @@
   <ItemGroup>
     <Compile Include="Classes\ContextMenuSetter.cs" />
     <Compile Include="Classes\txtSetter.cs" />
+    <Compile Include="Customer_Form\frmCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer_Form\frmCustomer.Designer.cs">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer_Form\frmCustomerGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Customer_Form\frmCustomer.resx">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customer_Form\frmCustomerGroup.resx">
       <DependentUpon>frmCustomerGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +192,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.CustomerBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CustomerGroupBussines.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

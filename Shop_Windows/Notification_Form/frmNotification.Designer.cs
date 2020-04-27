@@ -117,6 +117,7 @@
             this.Name = "frmNotification";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmNotification_Load);
             this.RightSide.ResumeLayout(false);
             this.RightSide.PerformLayout();

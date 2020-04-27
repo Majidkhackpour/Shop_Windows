@@ -43,17 +43,17 @@ namespace Shop_Windows.Customer_Form
             try
             {
                 await LoadData();
-                txtName.Text = cls.Name;
-                txtDesc.Text = cls.Description;
-                if (cls.Guid != Guid.Empty)
-                    cmbParent.SelectedValue = cls.ParentGuid;
+                txtName.Text = cls?.Name;
+                txtDesc.Text = cls?.Description;
+                if (cls?.Guid != Guid.Empty)
+                    cmbParent.SelectedValue = cls?.ParentGuid ?? Guid.Empty;
             }
             catch (Exception e)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
-        public frmCustomerGroup(Guid guid,bool isShowMode)
+        public frmCustomerGroup(Guid guid, bool isShowMode)
         {
             InitializeComponent();
             cls = CustomerGroupBussines.Get(guid);
