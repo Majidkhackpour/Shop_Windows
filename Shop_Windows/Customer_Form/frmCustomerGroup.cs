@@ -115,7 +115,12 @@ namespace Shop_Windows.Customer_Form
                 cls.Name = txtName.Text.Trim();
                 cls.Description = txtDesc.Text;
                 cls.ParentGuid = (Guid)cmbParent.SelectedValue;
-                await cls.SaveAsync();
+                var res = await cls.SaveAsync();
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
                 DialogResult = DialogResult.OK;
                 frmLoading.PublicInfo.ShowForm();
                 Close();

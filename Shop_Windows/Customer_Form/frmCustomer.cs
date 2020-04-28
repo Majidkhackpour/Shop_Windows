@@ -48,7 +48,7 @@ namespace Shop_Windows.Customer_Form
                 txtTell1.Text = cls?.Phone1;
                 txtTell2.Text = cls?.Phone2;
                 if (cls?.NahveAshnaei != null && (short)cls?.NahveAshnaei != 0)
-                    cmbNahveAshnaei.SelectedValue = (int)cls?.NahveAshnaei;
+                    cmbNahveAshnaei.SelectedIndex = (int)(cls?.NahveAshnaei - 1);
                 cmbGroup.SelectedValue = cls?.GroupGuid;
             }
             catch (Exception e)
@@ -220,7 +220,12 @@ namespace Shop_Windows.Customer_Form
                 cls.NationalCode = txtNationalCode.Text;
                 cls.Phone1 = txtTell1.Text;
                 cls.Phone2 = txtTell2.Text;
-                await cls.SaveAsync();
+                var res = await cls.SaveAsync();
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
                 DialogResult = DialogResult.OK;
                 frmLoading.PublicInfo.ShowForm();
                 Close();

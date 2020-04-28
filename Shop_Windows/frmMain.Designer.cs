@@ -145,16 +145,16 @@
             this.lblCustGroup.AutoSize = true;
             this.lblCustGroup.BackColor = System.Drawing.Color.Transparent;
             this.lblCustGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCustGroup.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblCustGroup.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblCustGroup.ForeColor = System.Drawing.Color.Silver;
             this.lblCustGroup.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lblCustGroup.LinkColor = System.Drawing.Color.Silver;
-            this.lblCustGroup.Location = new System.Drawing.Point(25, 30);
+            this.lblCustGroup.Location = new System.Drawing.Point(77, 30);
             this.lblCustGroup.Name = "lblCustGroup";
-            this.lblCustGroup.Size = new System.Drawing.Size(142, 24);
+            this.lblCustGroup.Size = new System.Drawing.Size(90, 20);
             this.lblCustGroup.TabIndex = 1;
             this.lblCustGroup.TabStop = true;
-            this.lblCustGroup.Text = "مدیریت گروه مشتریان";
+            this.lblCustGroup.Text = "مدیریت مشتریان";
             this.lblCustGroup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblCustGroup_LinkClicked);
             // 
             // picCustGroup

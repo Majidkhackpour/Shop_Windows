@@ -46,7 +46,7 @@ namespace Shop_Windows.Customer_Form
             }
         }
 
-        
+
         private Guid _groupGuid = Guid.Empty;
         public Guid GroupGuid { get => _groupGuid; set => _groupGuid = value; }
         private async Task LoadData(string search = null)
@@ -133,10 +133,23 @@ namespace Shop_Windows.Customer_Form
                         $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {counter} زیرگروه فعال، قادر به حذف نیست");
                     return;
                 }
+
+                var childes = await CustomerBussines.GetAllByGroupAsync(GroupGuid);
+                if (childes != null && childes.Count > 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {childes.Count} مشتری فعال، قادر به حذف نیست");
+                    return;
+                }
                 if (MessageBox.Show($@"آیا از حذف گروه {trvGroup.SelectedNode.Text} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
                 var custGroup = await CustomerGroupBussines.GetAsync(GroupGuid);
-                await custGroup.RemoveAsync();
+                var res = await custGroup.RemoveAsync();
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
                 frmLoading.PublicInfo.ShowForm();
                 await LoadGroups();
             }
@@ -167,6 +180,65 @@ namespace Shop_Windows.Customer_Form
             try
             {
                 var frm = new frmCustomer();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await LoadData(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmCustomer(guid, false);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await LoadData(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void mnuDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (MessageBox.Show($@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No) return;
+                var customer = await CustomerBussines.GetAsync(guid);
+                var res = await customer.RemoveAsync();
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+                frmLoading.PublicInfo.ShowForm();
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void mnuView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmCustomer(guid, true);
                 if (frm.ShowDialog() == DialogResult.OK)
                     await LoadData(txtSearch.Text);
             }
