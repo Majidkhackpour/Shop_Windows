@@ -45,17 +45,28 @@ namespace Shop_Windows.Customer_Form
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
-
+        private async Task LoadCustomers(string search=null)
+        {
+            try
+            {
+                var liat = await CustomerBussines.GetAllAsync(search);
+                CustomerBindingSource.DataSource = liat.OrderBy(q => q.Name).ToList();
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
+            }
+        }
 
         private Guid _groupGuid = Guid.Empty;
         public Guid GroupGuid { get => _groupGuid; set => _groupGuid = value; }
-        private async Task LoadData(string search = null)
+
+        private async Task LoadData()
         {
             try
             {
                 await LoadGroups();
-                var liat = await CustomerBussines.GetAllAsync();
-                CustomerBindingSource.DataSource = liat.OrderBy(q => q.Name).ToList();
+                await LoadCustomers();
             }
             catch (Exception ex)
             {
@@ -94,6 +105,7 @@ namespace Shop_Windows.Customer_Form
             {
                 if (trvGroup.SelectedNode == null) return;
                 if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
+                if (trvGroup.SelectedNode.Text == "فروشگاه اینترنتی") return;
                 var frm = new frmCustomerGroup(GroupGuid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
                     await LoadGroups();
@@ -126,6 +138,7 @@ namespace Shop_Windows.Customer_Form
             {
                 if (trvGroup.SelectedNode == null) return;
                 if (trvGroup.SelectedNode.Text == "همه گروه ها") return;
+                if (trvGroup.SelectedNode.Text == "فروشگاه اینترنتی") return;
                 var counter = await CustomerGroupBussines.ChildCount(GroupGuid);
                 if (await CustomerGroupBussines.ChildCount(GroupGuid) > 0)
                 {
@@ -181,7 +194,7 @@ namespace Shop_Windows.Customer_Form
             {
                 var frm = new frmCustomer();
                 if (frm.ShowDialog() == DialogResult.OK)
-                    await LoadData(txtSearch.Text);
+                    await LoadCustomers(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -198,7 +211,7 @@ namespace Shop_Windows.Customer_Form
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmCustomer(guid, false);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    await LoadData(txtSearch.Text);
+                    await LoadCustomers(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -223,7 +236,7 @@ namespace Shop_Windows.Customer_Form
                     return;
                 }
                 frmLoading.PublicInfo.ShowForm();
-                await LoadData();
+                await LoadCustomers(txtSearch.Text);
             }
             catch (Exception ex)
             {
@@ -240,12 +253,29 @@ namespace Shop_Windows.Customer_Form
                 var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
                 var frm = new frmCustomer(guid, true);
                 if (frm.ShowDialog() == DialogResult.OK)
-                    await LoadData(txtSearch.Text);
+                    await LoadCustomers(txtSearch.Text);
             }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                await LoadCustomers(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DGrid.Rows[e.RowIndex].Cells["Radif"].Value = e.RowIndex + 1;
         }
     }
 }

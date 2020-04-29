@@ -161,6 +161,18 @@
     <Compile Include="Notification_Form\frmNotification.Designer.cs">
       <DependentUpon>frmNotification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product_Form\frmProductGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_Form\frmProductGroup.Designer.cs">
+      <DependentUpon>frmProductGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product_Form\frmShowProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_Form\frmShowProducts.Designer.cs">
+      <DependentUpon>frmShowProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Customer_Form\frmCustomer.resx">
@@ -181,6 +193,12 @@
     <EmbeddedResource Include="Notification_Form\frmNotification.resx">
       <DependentUpon>frmNotification.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Product_Form\frmProductGroup.resx">
+      <DependentUpon>frmProductGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product_Form\frmShowProducts.resx">
+      <DependentUpon>frmShowProducts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -194,6 +212,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CustomerBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CustomerGroupBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.ProductGroupBussines.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -223,6 +242,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Arad_Icon.ico" />
+    <None Include="Resources\P-1-95.png" />
     <None Include="Resources\563ba6c1-5628-4d77-92ef-f30aacf8c8de.gif" />
     <None Include="Resources\028.png" />
     <None Include="Resources\0036.png" />

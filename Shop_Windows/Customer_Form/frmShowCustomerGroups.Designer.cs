@@ -143,6 +143,7 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(604, 507);
             this.DGrid.TabIndex = 55698;
+            this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
             // Radif
             // 
@@ -232,7 +233,7 @@
             this.mnuView});
             this.cmCustomer.Name = "contextMenuStrip1";
             this.cmCustomer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmCustomer.Size = new System.Drawing.Size(182, 128);
+            this.cmCustomer.Size = new System.Drawing.Size(182, 106);
             // 
             // mnuInsAdv
             // 
@@ -292,6 +293,7 @@
             this.txtSearch.TabIndex = 55702;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // trvGroup
             // 

@@ -30,15 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.picExit = new System.Windows.Forms.PictureBox();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblProduct = new System.Windows.Forms.LinkLabel();
             this.lblCustGroup = new System.Windows.Forms.LinkLabel();
-            this.picCustGroup = new System.Windows.Forms.PictureBox();
             this.pnlContent = new System.Windows.Forms.FlowLayoutPanel();
+            this.picProduct = new System.Windows.Forms.PictureBox();
+            this.picCustGroup = new System.Windows.Forms.PictureBox();
+            this.picExit = new System.Windows.Forms.PictureBox();
             this.grpAccount.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             this.groupPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCustGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             this.SuspendLayout();
             // 
             // grpAccount
@@ -83,26 +86,14 @@
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 6;
             // 
-            // picExit
-            // 
-            this.picExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picExit.BackColor = System.Drawing.Color.Transparent;
-            this.picExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picExit.Image = global::Shop_Windows.Properties.Resources._0036;
-            this.picExit.Location = new System.Drawing.Point(1016, 3);
-            this.picExit.Name = "picExit";
-            this.picExit.Size = new System.Drawing.Size(32, 27);
-            this.picExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picExit.TabIndex = 0;
-            this.picExit.TabStop = false;
-            this.picExit.Click += new System.EventHandler(this.picExit_Click);
-            // 
             // groupPanel1
             // 
             this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.BackColor = System.Drawing.Color.White;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel1.Controls.Add(this.lblProduct);
+            this.groupPanel1.Controls.Add(this.picProduct);
             this.groupPanel1.Controls.Add(this.lblCustGroup);
             this.groupPanel1.Controls.Add(this.picCustGroup);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
@@ -140,6 +131,23 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 6;
             // 
+            // lblProduct
+            // 
+            this.lblProduct.AutoSize = true;
+            this.lblProduct.BackColor = System.Drawing.Color.Transparent;
+            this.lblProduct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblProduct.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblProduct.ForeColor = System.Drawing.Color.Silver;
+            this.lblProduct.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblProduct.LinkColor = System.Drawing.Color.Silver;
+            this.lblProduct.Location = new System.Drawing.Point(93, 114);
+            this.lblProduct.Name = "lblProduct";
+            this.lblProduct.Size = new System.Drawing.Size(74, 20);
+            this.lblProduct.TabIndex = 3;
+            this.lblProduct.TabStop = true;
+            this.lblProduct.Text = "مدیریت کالاها";
+            this.lblProduct.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblProduct_LinkClicked);
+            // 
             // lblCustGroup
             // 
             this.lblCustGroup.AutoSize = true;
@@ -157,6 +165,31 @@
             this.lblCustGroup.Text = "مدیریت مشتریان";
             this.lblCustGroup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblCustGroup_LinkClicked);
             // 
+            // pnlContent
+            // 
+            this.pnlContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlContent.AutoScroll = true;
+            this.pnlContent.Location = new System.Drawing.Point(1, 87);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(800, 601);
+            this.pnlContent.TabIndex = 7;
+            // 
+            // picProduct
+            // 
+            this.picProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picProduct.BackColor = System.Drawing.Color.Transparent;
+            this.picProduct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picProduct.Image = global::Shop_Windows.Properties.Resources.P_1_95;
+            this.picProduct.Location = new System.Drawing.Point(173, 94);
+            this.picProduct.Name = "picProduct";
+            this.picProduct.Size = new System.Drawing.Size(67, 58);
+            this.picProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picProduct.TabIndex = 2;
+            this.picProduct.TabStop = false;
+            this.picProduct.Click += new System.EventHandler(this.picProduct_Click);
+            // 
             // picCustGroup
             // 
             this.picCustGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -171,16 +204,19 @@
             this.picCustGroup.TabStop = false;
             this.picCustGroup.Click += new System.EventHandler(this.picCustGroup_Click);
             // 
-            // pnlContent
+            // picExit
             // 
-            this.pnlContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlContent.AutoScroll = true;
-            this.pnlContent.Location = new System.Drawing.Point(1, 87);
-            this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(800, 601);
-            this.pnlContent.TabIndex = 7;
+            this.picExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picExit.BackColor = System.Drawing.Color.Transparent;
+            this.picExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picExit.Image = global::Shop_Windows.Properties.Resources._0036;
+            this.picExit.Location = new System.Drawing.Point(1016, 3);
+            this.picExit.Name = "picExit";
+            this.picExit.Size = new System.Drawing.Size(32, 27);
+            this.picExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picExit.TabIndex = 0;
+            this.picExit.TabStop = false;
+            this.picExit.Click += new System.EventHandler(this.picExit_Click);
             // 
             // frmMain
             // 
@@ -203,10 +239,11 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.grpAccount.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCustGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -219,5 +256,7 @@
         private System.Windows.Forms.PictureBox picExit;
         private System.Windows.Forms.LinkLabel lblCustGroup;
         private System.Windows.Forms.PictureBox picCustGroup;
+        private System.Windows.Forms.LinkLabel lblProduct;
+        private System.Windows.Forms.PictureBox picProduct;
     }
 }

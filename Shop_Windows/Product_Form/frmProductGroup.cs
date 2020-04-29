@@ -7,28 +7,28 @@ using PacketParser.Services;
 using Shop_Windows.Classes;
 using Shop_Windows.Notification_Form;
 
-namespace Shop_Windows.Customer_Form
+namespace Shop_Windows.Product_Form
 {
-    public partial class frmCustomerGroup : Form
+    public partial class frmProductGroup : Form
     {
-        private CustomerGroupBussines cls;
-        public frmCustomerGroup()
+        private ProductGroupBussines cls;
+        public frmProductGroup()
         {
             InitializeComponent();
-            cls = new CustomerGroupBussines();
+            cls = new ProductGroupBussines();
         }
         private async Task LoadData()
         {
             try
             {
-                var a = new CustomerGroupBussines()
+                var a = new ProductGroupBussines()
                 {
                     Guid = Guid.Empty,
                     Name = "[هیچکدام]",
                     ParentGuid = Guid.Empty,
                     Description = ""
                 };
-                var list = await CustomerGroupBussines.GetAllAsync();
+                var list = await ProductGroupBussines.GetAllAsync();
                 list = list.Where(q => q.ParentGuid == Guid.Empty).ToList();
                 list.Add(a);
                 ParentBindingSource.DataSource = list.OrderBy(q => q.Name).ToList();
@@ -53,10 +53,10 @@ namespace Shop_Windows.Customer_Form
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
-        public frmCustomerGroup(Guid guid, bool isShowMode)
+        public frmProductGroup(Guid guid, bool isShowMode)
         {
             InitializeComponent();
-            cls = CustomerGroupBussines.Get(guid);
+            cls = ProductGroupBussines.Get(guid);
             grpAccount.Enabled = !isShowMode;
             btnFinish.Enabled = !isShowMode;
         }
@@ -71,17 +71,17 @@ namespace Shop_Windows.Customer_Form
             txtSetter.Focus(txt2: txtDesc);
         }
 
-        private void txtDesc_Leave(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txt2: txtDesc);
-        }
-
         private void txtName_Leave(object sender, EventArgs e)
         {
             txtSetter.Follow(txt2: txtName);
         }
 
-        private async void frmCustomerGroup_Load(object sender, EventArgs e)
+        private void txtDesc_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtDesc);
+        }
+
+        private async void frmProductGroup_Load(object sender, EventArgs e)
         {
             await SetData();
         }
@@ -105,7 +105,7 @@ namespace Shop_Windows.Customer_Form
                     txtName.Focus();
                     return;
                 }
-                if (!await CustomerGroupBussines.CheckName(cls.Guid, txtName.Text.Trim()))
+                if (!await ProductGroupBussines.CheckName(cls.Guid, txtName.Text.Trim()))
                 {
                     frmNotification.PublicInfo.ShowMessage("عنوان وارد شده تکراری است");
                     txtName.Focus();
@@ -131,14 +131,14 @@ namespace Shop_Windows.Customer_Form
             }
         }
 
-        private void frmCustomerGroup_KeyDown(object sender, KeyEventArgs e)
+        private void frmProductGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (!btnFinish.Focused && !btnCancel.Focused)
+                        if(!btnFinish.Focused&& !btnCancel.Focused)
                             SendKeys.Send("{Tab}");
                         break;
                     case Keys.F5:

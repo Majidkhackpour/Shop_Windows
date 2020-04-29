@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using PacketParser.Services;
 using Shop_Windows.Customer_Form;
+using Shop_Windows.Product_Form;
 
 namespace Shop_Windows
 {
@@ -40,6 +41,7 @@ namespace Shop_Windows
             var t1 = new ToolTip();
             t1.SetToolTip(picExit, "خروج");
             t1.SetToolTip(picCustGroup, "گروه مشتریان");
+            t1.SetToolTip(picProduct, "گروه کالاها");
         }
 
         private void lblCustGroup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -57,6 +59,23 @@ namespace Shop_Windows
         private void picCustGroup_Click(object sender, EventArgs e)
         {
             lblCustGroup_LinkClicked(null, null);
+        }
+
+        private void lblProduct_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                LoadNewForm(new frmShowProducts());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picProduct_Click(object sender, EventArgs e)
+        {
+            lblProduct_LinkClicked(null, null);
         }
     }
 }
