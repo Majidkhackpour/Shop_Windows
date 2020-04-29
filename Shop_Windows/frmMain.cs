@@ -30,7 +30,7 @@ namespace Shop_Windows
         }
         private void picExit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("آیا مایلبد از برنامه خارج شوید؟", "خروج", MessageBoxButtons.YesNo,
+            if (MessageBox.Show(@"آیا مایلید از برنامه خارج شوید؟", @"خروج", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes)
                 Application.Exit();
         }
@@ -52,6 +52,11 @@ namespace Shop_Windows
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
+        }
+
+        private void picCustGroup_Click(object sender, EventArgs e)
+        {
+            lblCustGroup_LinkClicked(null, null);
         }
     }
 }

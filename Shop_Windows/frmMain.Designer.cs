@@ -169,6 +169,7 @@
             this.picCustGroup.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picCustGroup.TabIndex = 0;
             this.picCustGroup.TabStop = false;
+            this.picCustGroup.Click += new System.EventHandler(this.picCustGroup_Click);
             // 
             // pnlContent
             // 
