@@ -34,11 +34,14 @@
             this.lblProduct = new System.Windows.Forms.LinkLabel();
             this.lblCustGroup = new System.Windows.Forms.LinkLabel();
             this.pnlContent = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblDivarCategory = new System.Windows.Forms.LinkLabel();
+            this.picDivarCategory = new System.Windows.Forms.PictureBox();
             this.picProduct = new System.Windows.Forms.PictureBox();
             this.picCustGroup = new System.Windows.Forms.PictureBox();
             this.picExit = new System.Windows.Forms.PictureBox();
             this.grpAccount.SuspendLayout();
             this.groupPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDivarCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCustGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
@@ -92,7 +95,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.BackColor = System.Drawing.Color.White;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel1.Controls.Add(this.lblDivarCategory);
             this.groupPanel1.Controls.Add(this.lblProduct);
+            this.groupPanel1.Controls.Add(this.picDivarCategory);
             this.groupPanel1.Controls.Add(this.picProduct);
             this.groupPanel1.Controls.Add(this.lblCustGroup);
             this.groupPanel1.Controls.Add(this.picCustGroup);
@@ -176,6 +181,36 @@
             this.pnlContent.Size = new System.Drawing.Size(800, 601);
             this.pnlContent.TabIndex = 7;
             // 
+            // lblDivarCategory
+            // 
+            this.lblDivarCategory.BackColor = System.Drawing.Color.Transparent;
+            this.lblDivarCategory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblDivarCategory.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblDivarCategory.ForeColor = System.Drawing.Color.Silver;
+            this.lblDivarCategory.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblDivarCategory.LinkColor = System.Drawing.Color.Silver;
+            this.lblDivarCategory.Location = new System.Drawing.Point(24, 174);
+            this.lblDivarCategory.Name = "lblDivarCategory";
+            this.lblDivarCategory.Size = new System.Drawing.Size(143, 50);
+            this.lblDivarCategory.TabIndex = 3;
+            this.lblDivarCategory.TabStop = true;
+            this.lblDivarCategory.Text = "دریافت دسته بندی ها از سایت دیوار";
+            this.lblDivarCategory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDivarCategory_LinkClicked);
+            // 
+            // picDivarCategory
+            // 
+            this.picDivarCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picDivarCategory.BackColor = System.Drawing.Color.Transparent;
+            this.picDivarCategory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picDivarCategory.Image = global::Shop_Windows.Properties.Resources._008;
+            this.picDivarCategory.Location = new System.Drawing.Point(175, 167);
+            this.picDivarCategory.Name = "picDivarCategory";
+            this.picDivarCategory.Size = new System.Drawing.Size(67, 58);
+            this.picDivarCategory.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picDivarCategory.TabIndex = 2;
+            this.picDivarCategory.TabStop = false;
+            this.picDivarCategory.Click += new System.EventHandler(this.picDivarCategory_Click);
+            // 
             // picProduct
             // 
             this.picProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -241,6 +276,7 @@
             this.grpAccount.ResumeLayout(false);
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDivarCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCustGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
@@ -258,5 +294,7 @@
         private System.Windows.Forms.PictureBox picCustGroup;
         private System.Windows.Forms.LinkLabel lblProduct;
         private System.Windows.Forms.PictureBox picProduct;
+        private System.Windows.Forms.LinkLabel lblDivarCategory;
+        private System.Windows.Forms.PictureBox picDivarCategory;
     }
 }

@@ -45,12 +45,28 @@ namespace Shop_Windows.Product_Form
                 await LoadData();
                 txtName.Text = cls?.Name;
                 txtDesc.Text = cls?.Description;
+                lblCode.Text = cls?.Code;
                 if (cls?.Guid != Guid.Empty)
                     cmbParent.SelectedValue = cls?.ParentGuid ?? Guid.Empty;
+                if (cls?.Guid == Guid.Empty)
+                    await NewCode();
             }
             catch (Exception e)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
+            }
+        }
+
+        private async Task NewCode()
+        {
+            try
+            {
+                var code = await ProductGroupBussines.NextCode();
+                lblCode.Text = code;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         public frmProductGroup(Guid guid, bool isShowMode)
@@ -115,6 +131,7 @@ namespace Shop_Windows.Product_Form
                 cls.Name = txtName.Text.Trim();
                 cls.Description = txtDesc.Text;
                 cls.ParentGuid = (Guid)cmbParent.SelectedValue;
+                cls.Code = lblCode.Text;
                 var res = await cls.SaveAsync();
                 if (res.HasError)
                 {

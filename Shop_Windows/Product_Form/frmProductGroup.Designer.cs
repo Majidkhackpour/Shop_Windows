@@ -37,6 +37,8 @@
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.lblCode = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
@@ -56,11 +58,13 @@
             this.grpAccount.Controls.Add(this.txtDesc);
             this.grpAccount.Controls.Add(this.label1);
             this.grpAccount.Controls.Add(this.txtName);
+            this.grpAccount.Controls.Add(this.lblCode);
+            this.grpAccount.Controls.Add(this.label3);
             this.grpAccount.Controls.Add(this.label2);
             this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpAccount.Location = new System.Drawing.Point(12, 58);
             this.grpAccount.Name = "grpAccount";
-            this.grpAccount.Size = new System.Drawing.Size(385, 326);
+            this.grpAccount.Size = new System.Drawing.Size(385, 356);
             // 
             // 
             // 
@@ -101,7 +105,7 @@
             this.cmbParent.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbParent.ForeColor = System.Drawing.Color.Black;
             this.cmbParent.ItemHeight = 20;
-            this.cmbParent.Location = new System.Drawing.Point(11, 90);
+            this.cmbParent.Location = new System.Drawing.Point(11, 126);
             this.cmbParent.Name = "cmbParent";
             this.cmbParent.Size = new System.Drawing.Size(361, 28);
             this.cmbParent.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -118,7 +122,7 @@
             this.label17.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label17.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label17.ForeColor = System.Drawing.Color.Silver;
-            this.label17.Location = new System.Drawing.Point(238, 67);
+            this.label17.Location = new System.Drawing.Point(238, 103);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(138, 20);
             this.label17.TabIndex = 35;
@@ -129,7 +133,7 @@
             this.txtDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDesc.ForeColor = System.Drawing.Color.Silver;
-            this.txtDesc.Location = new System.Drawing.Point(11, 148);
+            this.txtDesc.Location = new System.Drawing.Point(11, 184);
             this.txtDesc.MaxLength = 30000;
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
@@ -145,7 +149,7 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(224, 125);
+            this.label1.Location = new System.Drawing.Point(224, 161);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 20);
             this.label1.TabIndex = 30;
@@ -156,7 +160,7 @@
             this.txtName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.ForeColor = System.Drawing.Color.Silver;
-            this.txtName.Location = new System.Drawing.Point(11, 36);
+            this.txtName.Location = new System.Drawing.Point(11, 72);
             this.txtName.MaxLength = 3000;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(361, 27);
@@ -164,13 +168,38 @@
             this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
             this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
             // 
+            // lblCode
+            // 
+            this.lblCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblCode.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblCode.Font = new System.Drawing.Font("B Yekan", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblCode.ForeColor = System.Drawing.Color.Silver;
+            this.lblCode.Location = new System.Drawing.Point(135, 16);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(113, 32);
+            this.lblCode.TabIndex = 30;
+            this.lblCode.Text = "000";
+            this.lblCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.ForeColor = System.Drawing.Color.Silver;
+            this.label3.Location = new System.Drawing.Point(224, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(152, 20);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "کد گروه";
+            // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(224, 13);
+            this.label2.Location = new System.Drawing.Point(224, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(152, 20);
             this.label2.TabIndex = 30;
@@ -184,7 +213,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnCancel.Location = new System.Drawing.Point(14, 412);
+            this.btnCancel.Location = new System.Drawing.Point(14, 444);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnCancel.Size = new System.Drawing.Size(139, 25);
@@ -202,7 +231,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnFinish.Location = new System.Drawing.Point(244, 412);
+            this.btnFinish.Location = new System.Drawing.Point(244, 444);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnFinish.Size = new System.Drawing.Size(155, 25);
@@ -216,7 +245,7 @@
             // line1
             // 
             this.line1.ForeColor = System.Drawing.Color.Silver;
-            this.line1.Location = new System.Drawing.Point(-6, 388);
+            this.line1.Location = new System.Drawing.Point(-6, 420);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(423, 19);
             this.line1.TabIndex = 55715;
@@ -252,7 +281,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(410, 450);
+            this.ClientSize = new System.Drawing.Size(410, 476);
             this.Controls.Add(this.grpAccount);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
@@ -293,5 +322,7 @@
         private DevComponents.DotNetBar.Controls.Line line1;
         private System.Windows.Forms.Label lblHeader;
         private UC_Date.UC_Date uC_Date1;
+        public System.Windows.Forms.Label lblCode;
+        public System.Windows.Forms.Label label3;
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using EntityCache.Bussines;
 using PacketParser.Services;
+using Shop_Windows.Classes;
 using Shop_Windows.Customer_Form;
 using Shop_Windows.Product_Form;
 
@@ -42,6 +44,7 @@ namespace Shop_Windows
             t1.SetToolTip(picExit, "خروج");
             t1.SetToolTip(picCustGroup, "گروه مشتریان");
             t1.SetToolTip(picProduct, "گروه کالاها");
+            t1.SetToolTip(picDivarCategory, "دسته بندی های دیوار");
         }
 
         private void lblCustGroup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -76,6 +79,35 @@ namespace Shop_Windows
         private void picProduct_Click(object sender, EventArgs e)
         {
             lblProduct_LinkClicked(null, null);
+        }
+
+        private async void lblDivarCategory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                var all = await DivarCategoryBussines.GetAllAsync();
+                if (all.Count > 0)
+                {
+                    if (MessageBox.Show($@"تعداد {all.Count} دسته بندی موجود است. 
+                                            درصورت ادامه، دسته بندی فعلی حذف و دسته بندی جدید جایگزین می شود 
+                                            آیا ادامه میدهید؟", @"هشدار", MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                }
+
+                var div = await DivarAdv.GetInstance();
+                await div.GetCategory();
+                Utility.CloseAllChromeWindows();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picDivarCategory_Click(object sender, EventArgs e)
+        {
+            lblDivarCategory_LinkClicked(null, null);
         }
     }
 }
