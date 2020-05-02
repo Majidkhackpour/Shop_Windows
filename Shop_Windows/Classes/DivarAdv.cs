@@ -39,42 +39,15 @@ namespace Shop_Windows.Classes
         {
             try
             {
-                _driver = Utility.RefreshDriver(_driver);
-                try
-                {
-                    if (!_driver.Url.Contains("divar.ir"))
-                        _driver.Navigate().GoToUrl("https://divar.ir");
-                }
-                catch (Exception)
-                {
-                    try
-                    {
-                        _driver.Navigate().GoToUrl("https://divar.ir");
-                    }
-                    catch (Exception e)
-                    {
-                    }
 
-                }
+                _driver = Utility.RefreshDriver(_driver);
+                if (!_driver.Url.Contains("divar.ir"))
+                    _driver.Navigate().GoToUrl("https://divar.ir");
 
                 var simBusiness = await SimcardBussines.GetAsync(simCardNumber);
                 var tokenInDatabase = simBusiness?.DivarToken ?? null;
 
-                ReadOnlyCollection<IWebElement> listLinkItems = null;
-                try
-                {
-                    listLinkItems = _driver.FindElements(By.TagName("a"));
-                }
-                catch (Exception)
-                {
-                    try
-                    {
-                        listLinkItems = _driver.FindElements(By.TagName("a"));
-                    }
-                    catch (Exception e)
-                    {
-                    }
-                }
+                var listLinkItems = _driver.FindElements(By.TagName("a"));
                 var isLogined = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
 
                 //اگر کاربر لاگین شده فعلی همان کاربر مورد نظر است نیازی به لاگین نیست 
@@ -120,20 +93,7 @@ namespace Shop_Windows.Classes
                 {
 
                     //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
-                    try
-                    {
-                        listLinkItems = _driver.FindElements(By.TagName("a"));
-                    }
-                    catch (Exception)
-                    {
-                        try
-                        {
-                            listLinkItems = _driver.FindElements(By.TagName("a"));
-                        }
-                        catch (Exception e)
-                        {
-                        }
-                    }
+                    listLinkItems = _driver.FindElements(By.TagName("a"));
                     if (listLinkItems.Count < 5) return false;
 
                     var isLogin = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
@@ -143,80 +103,58 @@ namespace Shop_Windows.Classes
                         //var all = _driver.Manage().Cookies.AllCookies.ToList();
                         tokenInDatabase = _driver.Manage().Cookies.GetCookieNamed("token").Value;
                         if (simBusiness is null)
-                        {
                             simBusiness = new SimcardBussines() { Guid = Guid.NewGuid() };
-                        }
 
                         simBusiness.DivarToken = tokenInDatabase;
+                        simBusiness.Modified = DateTime.Now;
                         simBusiness.Number = simCardNumber;
 
                         await simBusiness.SaveAsync();
-                        var message = $@"شماره: {simCardNumber}  \r\nلاگین انجام شد ";
-                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
-                        await Utility.Wait(2);
+
+                        ((IJavaScriptExecutor)_driver).ExecuteScript(@"alert('لاگین انجام شد');");
+                        await Utility.Wait();
                         _driver.SwitchTo().Alert().Accept();
                         return true;
                     }
-                    else
-                    {
-                        var a = await SimcardBussines.GetAsync(simCardNumber);
-                        var name = a.OwnerName;
-                        var message = $@"مالک: {name} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
-                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
 
+                    var name = await SimcardBussines.GetAsync(simCardNumber);
+                    var message = $@"مالک: {name.OwnerName} \r\nشماره: {name.Number}  \r\nلطفا لاگین نمائید ";
+                    ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
+
+                    await Utility.Wait(3);
+                    try
+                    {
+                        _driver.SwitchTo().Alert().Accept();
                         await Utility.Wait(3);
-                        try
-                        {
-                            _driver.SwitchTo().Alert().Accept();
-                            await Utility.Wait(3);
-                            repeat++;
-                        }
-                        catch
-                        {
-                            await Utility.Wait(10);
-                        }
+                        repeat++;
+                    }
+                    catch
+                    {
+                        await Utility.Wait(10);
                     }
                 }
-
                 return false;
             }
-            catch (StaleElementReferenceException rf)
-            {
-                return false;
-            }
-            catch (WebException er)
-            {
-                return false;
-
-            }
-            catch (WebDriverException ef)
-            {
-                return false;
-            }
+            catch (WebException) { return false; }
             catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                if (ex.Source != "WebDriver")
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
-
-            finally
-            {
-
-            }
         }
-        public async Task<bool> LoginChat(long simCardNumber, bool isFromSim)
+        public async Task<bool> LoginChat(long simCardNumber, bool isFromSimcard)
         {
             try
             {
-                if (isFromSim)
+                if (isFromSimcard)
                 {
                     _driver = Utility.RefreshDriver(_driver);
                     if (!_driver.Url.Contains("https://chat.divar.ir/"))
                         _driver.Navigate().GoToUrl("https://chat.divar.ir/");
-                    await Utility.Wait(2);
 
-                    var simBusiness = await SimcardBussines.GetAsync(simCardNumber);
-                    var tokenInDatabase = simBusiness?.ChatToken ?? null;
+                    var sim = await SimcardBussines.GetAsync(simCardNumber);
+                    var tokenInDatabase = sim?.ChatToken ?? null;
 
                     var listLinkItems = _driver.FindElements(By.TagName("a"));
                     var isLogined = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
@@ -225,6 +163,11 @@ namespace Shop_Windows.Classes
                     if (isLogined && !string.IsNullOrEmpty(tokenInDatabase))
                     {
                         var currentTokenOnDivar = _driver.Manage().Cookies.GetCookieNamed("token").Value;
+                        await Utility.Wait(1);
+                        var aouth = _driver.FindElements(By.ClassName("auth__body__text")).Any();
+                        if (aouth)
+                            _driver.FindElement(By.TagName("input")).SendKeys(sim.OwnerName + '\n');
+
                         if (!string.IsNullOrEmpty(currentTokenOnDivar) && currentTokenOnDivar == tokenInDatabase)
                             return true;
                     }
@@ -241,7 +184,9 @@ namespace Shop_Windows.Classes
                     {
                         var token = new Cookie("token", tokenInDatabase);
                         _driver.Manage().Cookies.AddCookie(token);
+                        await Utility.Wait();
                         _driver.Navigate().Refresh();
+                        await Utility.Wait();
                     }
                     //اگر قبلا توکن نداشته وارد صفحه دریافت کد تائید لاگین می شود 
                     else
@@ -249,25 +194,26 @@ namespace Shop_Windows.Classes
                         _driver.Navigate().GoToUrl("https://chat.divar.ir/");
                         //کلیک روی دکمه ورود و ثبت نام
                         await Utility.Wait();
-                        var currentWindow1 = _driver.CurrentWindowHandle;
-                        _driver.SwitchTo().Window(currentWindow1);
+                        var currentWindow = _driver.CurrentWindowHandle;
+                        _driver.SwitchTo().Window(currentWindow);
+                        await Utility.Wait(1);
                         if (_driver.FindElements(By.TagName("input")).Count > 0)
                             _driver.FindElements(By.TagName("input")).FirstOrDefault()
                                 ?.SendKeys("0" + simCardNumber + "\n");
                     }
 
-
-                    await Utility.Wait();
-
-                    _driver.Navigate().GoToUrl("https://chat.divar.ir/");
-                    //کلیک روی دکمه ورود و ثبت نام
-                    await Utility.Wait();
-                    var currentWindow = _driver.CurrentWindowHandle;
-                    _driver.SwitchTo().Window(currentWindow);
-                    if (_driver.FindElements(By.TagName("input")).Count > 0)
-                        _driver.FindElements(By.TagName("input")).FirstOrDefault()
-                            ?.SendKeys("0" + simCardNumber + "\n");
-
+                    var invalid = _driver.FindElements(By.TagName("p")).Any(q => q.Text == "invalid_token");
+                    if (invalid)
+                    {
+                        _driver.Navigate().GoToUrl("https://chat.divar.ir/");
+                        //کلیک روی دکمه ورود و ثبت نام
+                        await Utility.Wait();
+                        var currentWindow = _driver.CurrentWindowHandle;
+                        _driver.SwitchTo().Window(currentWindow);
+                        if (_driver.FindElements(By.TagName("input")).Count > 0)
+                            _driver.FindElements(By.TagName("input")).FirstOrDefault()
+                                ?.SendKeys("0" + simCardNumber + "\n");
+                    }
 
                     //انتظار برای لاگین شدن
                     var repeat = 0;
@@ -285,37 +231,42 @@ namespace Shop_Windows.Classes
                         {
                             //var all = _driver.Manage().Cookies.AllCookies.ToList();
                             tokenInDatabase = _driver.Manage().Cookies.GetCookieNamed("token").Value;
-                            if (simBusiness is null)
+                            if (sim is null)
                             {
-                                simBusiness = new SimcardBussines()
-                                {
-                                    Guid = Guid.NewGuid(),
-                                    ChatToken = tokenInDatabase,
-                                    Number = simCardNumber,
-                                };
+                                sim = new SimcardBussines() { Guid = Guid.NewGuid() };
                             }
 
+                            sim.ChatToken = tokenInDatabase;
+                            sim.Modified = DateTime.Now;
+                            sim.Number = simCardNumber;
+
+                            await sim.SaveAsync();
 
 
-                            await simBusiness.SaveAsync();
+                            await Utility.Wait(1);
+
+                            var aouth = _driver.FindElements(By.ClassName("auth__body__text")).Any();
+                            if (aouth)
+                                _driver.FindElement(By.TagName("input")).SendKeys(sim.OwnerName + '\n');
 
                             ((IJavaScriptExecutor)_driver).ExecuteScript(@"alert('لاگین انجام شد');");
                             await Utility.Wait();
                             _driver.SwitchTo().Alert().Accept();
+
+
                             return true;
                         }
                         else
                         {
-                            var a = await SimcardBussines.GetAsync(simCardNumber);
-                            var name = a.OwnerName;
-                            var message = $@"مالک: {name} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
+
+                            var message = $@"مالک: {sim.OwnerName} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
                             ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
 
-                            await Utility.Wait(3);
+                            await Utility.Wait(5);
                             try
                             {
                                 _driver.SwitchTo().Alert().Accept();
-                                await Utility.Wait(3);
+                                await Utility.Wait(5);
                                 repeat++;
                             }
                             catch
@@ -330,7 +281,6 @@ namespace Shop_Windows.Classes
                     _driver = Utility.RefreshDriver(_driver);
                     if (!_driver.Url.Contains("https://chat.divar.ir/"))
                         _driver.Navigate().GoToUrl("https://chat.divar.ir/");
-                    await Utility.Wait(2);
 
                     var simBusiness = await SimcardBussines.GetAsync(simCardNumber);
                     var tokenInDatabase = simBusiness?.ChatToken ?? null;
@@ -342,6 +292,11 @@ namespace Shop_Windows.Classes
                     if (isLogined && !string.IsNullOrEmpty(tokenInDatabase))
                     {
                         var currentTokenOnDivar = _driver.Manage().Cookies.GetCookieNamed("token").Value;
+                        await Utility.Wait(1);
+                        var aouth = _driver.FindElements(By.ClassName("auth__body__text")).Any();
+                        if (aouth)
+                            _driver.FindElement(By.TagName("input")).SendKeys(simBusiness.OwnerName + '\n');
+
                         if (!string.IsNullOrEmpty(currentTokenOnDivar) && currentTokenOnDivar == tokenInDatabase)
                             return true;
                     }
@@ -358,34 +313,14 @@ namespace Shop_Windows.Classes
                     {
                         var token = new Cookie("token", tokenInDatabase);
                         _driver.Manage().Cookies.AddCookie(token);
+                        await Utility.Wait();
                         _driver.Navigate().Refresh();
-                    }
-                    //اگر قبلا توکن نداشته وارد صفحه دریافت کد تائید لاگین می شود 
-                    else
-                    {
-                        _driver.Navigate().GoToUrl("https://chat.divar.ir/");
-                        //کلیک روی دکمه ورود و ثبت نام
                         await Utility.Wait();
-                        var currentWindow = _driver.CurrentWindowHandle;
-                        _driver.SwitchTo().Window(currentWindow);
                     }
-
-
-                    await Utility.Wait();
-                    var code = _driver.FindElements(By.TagName("button")).Any(q => q.Text == "دریافت کد تایید");
-                    if (code)
-                    {
-                        _driver.Navigate().GoToUrl("https://chat.divar.ir/");
-                        //کلیک روی دکمه ورود و ثبت نام
-                        await Utility.Wait();
-                        var currentWindow = _driver.CurrentWindowHandle;
-                        _driver.SwitchTo().Window(currentWindow);
-                    }
-
                     //انتظار برای لاگین شدن
                     var repeat = 0;
                     //حدود 120 ثانیه فرصت لاگین دارد
-                    while (repeat < 2)
+                    while (repeat < 3)
                     {
 
                         //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
@@ -400,44 +335,50 @@ namespace Shop_Windows.Classes
                             tokenInDatabase = _driver.Manage().Cookies.GetCookieNamed("token").Value;
                             if (simBusiness is null)
                             {
-                                simBusiness = new SimcardBussines()
-                                {
-                                    Guid = Guid.NewGuid(),
-                                    ChatToken = tokenInDatabase,
-                                    Number = simCardNumber,
-                                };
+                                simBusiness = new SimcardBussines() { Guid = Guid.NewGuid() };
                             }
 
-
+                            simBusiness.ChatToken = tokenInDatabase;
+                            simBusiness.Modified = DateTime.Now;
+                            simBusiness.Number = simCardNumber;
 
                             await simBusiness.SaveAsync();
+
+
+                            await Utility.Wait(1);
+
+                            var aouth = _driver.FindElements(By.ClassName("auth__body__text")).Any();
+                            if (aouth)
+                                _driver.FindElement(By.TagName("input")).SendKeys(simBusiness.OwnerName + '\n');
 
                             ((IJavaScriptExecutor)_driver).ExecuteScript(@"alert('لاگین انجام شد');");
                             await Utility.Wait();
                             _driver.SwitchTo().Alert().Accept();
+
+
                             return true;
                         }
                         else
                         {
+
+                            var message = $@"مالک: {simBusiness.OwnerName} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
+                            ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
+
                             await Utility.Wait(3);
                             try
                             {
+                                _driver.SwitchTo().Alert().Accept();
                                 await Utility.Wait(3);
                                 repeat++;
                             }
                             catch
                             {
-                                await Utility.Wait(1);
+                                await Utility.Wait(10);
                             }
                         }
                     }
                 }
 
-
-                return false;
-            }
-            catch (NoAlertPresentException)
-            {
                 return false;
             }
             catch (WebException)
@@ -446,7 +387,8 @@ namespace Shop_Windows.Classes
             }
             catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                if (ex.Source != "WebDriver")
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
 

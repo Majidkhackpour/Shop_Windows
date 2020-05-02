@@ -148,6 +148,18 @@
     <Compile Include="Customer_Form\frmShowCustomerGroups.Designer.cs">
       <DependentUpon>frmShowCustomerGroups.cs</DependentUpon>
     </Compile>
+    <Compile Include="DivarRobot_Form\frmShowSimcard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DivarRobot_Form\frmShowSimcard.Designer.cs">
+      <DependentUpon>frmShowSimcard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DivarRobot_Form\frmSimcard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DivarRobot_Form\frmSimcard.Designer.cs">
+      <DependentUpon>frmSimcard.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +201,12 @@
     <EmbeddedResource Include="Customer_Form\frmShowCustomerGroups.resx">
       <DependentUpon>frmShowCustomerGroups.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DivarRobot_Form\frmShowSimcard.resx">
+      <DependentUpon>frmShowSimcard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DivarRobot_Form\frmSimcard.resx">
+      <DependentUpon>frmSimcard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,7 +235,9 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CustomerBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CustomerGroupBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.DivarCategoryBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.ProductGroupBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.SimcardBussines.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -247,15 +267,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Arad_Icon.ico" />
+    <None Include="Resources\057.png" />
     <None Include="Resources\008.png" />
     <None Include="Resources\P-1-95.png" />
     <None Include="Resources\563ba6c1-5628-4d77-92ef-f30aacf8c8de.gif" />
     <None Include="Resources\028.png" />
     <None Include="Resources\0036.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DivarRobot_Form\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

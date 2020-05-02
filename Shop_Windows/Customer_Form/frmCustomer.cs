@@ -171,6 +171,10 @@ namespace Shop_Windows.Customer_Form
             {
                 switch (e.KeyCode)
                 {
+                    case Keys.Enter:
+                        if (!btnFinish.Focused && !btnCancel.Focused)
+                            SendKeys.Send("{Tab}");
+                        break;
                     case Keys.F5:
                         btnFinish.PerformClick();
                         break;

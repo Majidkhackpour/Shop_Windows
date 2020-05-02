@@ -4,6 +4,7 @@ using EntityCache.Bussines;
 using PacketParser.Services;
 using Shop_Windows.Classes;
 using Shop_Windows.Customer_Form;
+using Shop_Windows.DivarRobot_Form;
 using Shop_Windows.Product_Form;
 
 namespace Shop_Windows
@@ -45,6 +46,7 @@ namespace Shop_Windows
             t1.SetToolTip(picCustGroup, "گروه مشتریان");
             t1.SetToolTip(picProduct, "گروه کالاها");
             t1.SetToolTip(picDivarCategory, "دسته بندی های دیوار");
+            t1.SetToolTip(picSimcard, "سیمکارت ها");
         }
 
         private void lblCustGroup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -108,6 +110,23 @@ namespace Shop_Windows
         private void picDivarCategory_Click(object sender, EventArgs e)
         {
             lblDivarCategory_LinkClicked(null, null);
+        }
+
+        private void lblSimcard_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                LoadNewForm(new frmShowSimcard());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void picSimcard_Click(object sender, EventArgs e)
+        {
+            lblSimcard_LinkClicked(null, null);
         }
     }
 }
