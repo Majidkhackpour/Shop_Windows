@@ -49,8 +49,8 @@ namespace Shop_Windows.Product_Form
         {
             try
             {
-                //var liat = await CustomerBussines.GetAllAsync(search);
-                //CustomerBindingSource.DataSource = liat.OrderBy(q => q.Name).ToList();
+                var liat = await ProductBussines.GetAllAsync(search);
+                ProductBindingSource.DataSource = liat.OrderBy(q => q.Name).ToList();
             }
             catch (Exception e)
             {
@@ -145,13 +145,13 @@ namespace Shop_Windows.Product_Form
                     return;
                 }
 
-                //var childes = await CustomerBussines.GetAllByGroupAsync(GroupGuid);
-                //if (childes != null && childes.Count > 0)
-                //{
-                //    frmNotification.PublicInfo.ShowMessage(
-                //        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {childes.Count} مشتری فعال، قادر به حذف نیست");
-                //    return;
-                //}
+                var childes = await ProductBussines.GetAllByGroupAsync(GroupGuid);
+                if (childes != null && childes.Count > 0)
+                {
+                    frmNotification.PublicInfo.ShowMessage(
+                        $"گروه {trvGroup.SelectedNode.Text} بدلیل داشتن {childes.Count} مشتری فعال، قادر به حذف نیست");
+                    return;
+                }
                 if (MessageBox.Show($@"آیا از حذف گروه {trvGroup.SelectedNode.Text} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
                 var prdGroup = await ProductGroupBussines.GetAsync(GroupGuid);
@@ -179,6 +179,20 @@ namespace Shop_Windows.Product_Form
                 var frm = new frmProductGroup(GroupGuid, true);
                 if (frm.ShowDialog() == DialogResult.OK)
                     await LoadGroups();
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void mnuInsAdv_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmProduct();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await LoadProducts();
             }
             catch (Exception ex)
             {

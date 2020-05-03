@@ -51,8 +51,18 @@
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInsAdv = new System.Windows.Forms.ToolStripMenuItem();
             this.cmProduct = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kindDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.abadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.PrdGroupBindingSource)).BeginInit();
             this.cmPrdGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductBindingSource)).BeginInit();
@@ -105,7 +115,7 @@
             this.mnuViwCustGroup});
             this.cmPrdGroup.Name = "contextMenuStrip1";
             this.cmPrdGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmPrdGroup.Size = new System.Drawing.Size(196, 128);
+            this.cmPrdGroup.Size = new System.Drawing.Size(196, 106);
             // 
             // mnuViwCustGroup
             // 
@@ -147,38 +157,43 @@
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
             // 
+            // ProductBindingSource
+            // 
+            this.ProductBindingSource.DataSource = typeof(EntityCache.Bussines.ProductBussines);
+            // 
             // mnuView
             // 
             this.mnuView.ForeColor = System.Drawing.Color.Silver;
             this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(170, 24);
+            this.mnuView.Size = new System.Drawing.Size(180, 24);
             this.mnuView.Text = "مشاهده";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(167, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
             // 
             // mnuDelete
             // 
             this.mnuDelete.ForeColor = System.Drawing.Color.Silver;
             this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(170, 24);
+            this.mnuDelete.Size = new System.Drawing.Size(180, 24);
             this.mnuDelete.Text = "حذف کالای جاری";
             // 
             // mnuEdit
             // 
             this.mnuEdit.ForeColor = System.Drawing.Color.Silver;
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(170, 24);
+            this.mnuEdit.Size = new System.Drawing.Size(180, 24);
             this.mnuEdit.Text = "ویرایش کالای جاری";
             // 
             // mnuInsAdv
             // 
             this.mnuInsAdv.ForeColor = System.Drawing.Color.Silver;
             this.mnuInsAdv.Name = "mnuInsAdv";
-            this.mnuInsAdv.Size = new System.Drawing.Size(170, 24);
+            this.mnuInsAdv.Size = new System.Drawing.Size(180, 24);
             this.mnuInsAdv.Text = "درج کالای جدید";
+            this.mnuInsAdv.Click += new System.EventHandler(this.mnuInsAdv_Click);
             // 
             // cmProduct
             // 
@@ -192,14 +207,7 @@
             this.mnuView});
             this.cmProduct.Name = "contextMenuStrip1";
             this.cmProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmProduct.Size = new System.Drawing.Size(171, 106);
-            // 
-            // Radif
-            // 
-            this.Radif.HeaderText = "ردیف";
-            this.Radif.Name = "Radif";
-            this.Radif.ReadOnly = true;
-            this.Radif.Width = 50;
+            this.cmProduct.Size = new System.Drawing.Size(181, 128);
             // 
             // DGrid
             // 
@@ -228,7 +236,17 @@
             this.DGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Radif});
+            this.Radif,
+            this.nameDataGridViewTextBoxColumn,
+            this.kindDataGridViewTextBoxColumn,
+            this.colorDataGridViewTextBoxColumn,
+            this.codeDataGridViewTextBoxColumn,
+            this.guidDataGridViewTextBoxColumn,
+            this.modifiedDataGridViewTextBoxColumn,
+            this.groupGuidDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn,
+            this.descriptionDataGridViewTextBoxColumn,
+            this.abadDataGridViewTextBoxColumn});
             this.DGrid.ContextMenuStrip = this.cmProduct;
             this.DGrid.DataSource = this.ProductBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -264,6 +282,81 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(604, 507);
             this.DGrid.TabIndex = 55704;
+            // 
+            // Radif
+            // 
+            this.Radif.HeaderText = "ردیف";
+            this.Radif.Name = "Radif";
+            this.Radif.ReadOnly = true;
+            this.Radif.Width = 50;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "عنوان";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // kindDataGridViewTextBoxColumn
+            // 
+            this.kindDataGridViewTextBoxColumn.DataPropertyName = "Kind";
+            this.kindDataGridViewTextBoxColumn.HeaderText = "جنس";
+            this.kindDataGridViewTextBoxColumn.Name = "kindDataGridViewTextBoxColumn";
+            // 
+            // colorDataGridViewTextBoxColumn
+            // 
+            this.colorDataGridViewTextBoxColumn.DataPropertyName = "Color";
+            this.colorDataGridViewTextBoxColumn.HeaderText = "رنگ";
+            this.colorDataGridViewTextBoxColumn.Name = "colorDataGridViewTextBoxColumn";
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // guidDataGridViewTextBoxColumn
+            // 
+            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
+            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
+            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
+            this.guidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // groupGuidDataGridViewTextBoxColumn
+            // 
+            this.groupGuidDataGridViewTextBoxColumn.DataPropertyName = "GroupGuid";
+            this.groupGuidDataGridViewTextBoxColumn.HeaderText = "GroupGuid";
+            this.groupGuidDataGridViewTextBoxColumn.Name = "groupGuidDataGridViewTextBoxColumn";
+            this.groupGuidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // abadDataGridViewTextBoxColumn
+            // 
+            this.abadDataGridViewTextBoxColumn.DataPropertyName = "Abad";
+            this.abadDataGridViewTextBoxColumn.HeaderText = "Abad";
+            this.abadDataGridViewTextBoxColumn.Name = "abadDataGridViewTextBoxColumn";
+            this.abadDataGridViewTextBoxColumn.Visible = false;
             // 
             // frmShowProducts
             // 
@@ -312,7 +405,17 @@
         private System.Windows.Forms.ToolStripMenuItem mnuEdit;
         private System.Windows.Forms.ToolStripMenuItem mnuInsAdv;
         private System.Windows.Forms.ContextMenuStrip cmProduct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kindDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn groupGuidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn abadDataGridViewTextBoxColumn;
     }
 }
