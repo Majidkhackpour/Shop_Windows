@@ -35,7 +35,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowProducts));
-            this.PrdGroupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuDeleteCustGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEditCustGroup = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +43,6 @@
             this.mnuViwCustGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.trvGroup = new System.Windows.Forms.TreeView();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.ProductBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,26 +51,24 @@
             this.cmProduct = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kindDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.abadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.PrdGroupBindingSource)).BeginInit();
+            this.ProductBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PrdGroupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmPrdGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductBindingSource)).BeginInit();
             this.cmProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PrdGroupBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // PrdGroupBindingSource
-            // 
-            this.PrdGroupBindingSource.DataSource = typeof(EntityCache.Bussines.ProductGroupBussines);
             // 
             // toolStripMenuItem2
             // 
@@ -156,10 +152,7 @@
             this.txtSearch.TabIndex = 55705;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.WatermarkText = "مورد جستجو را وارد نمایید ...";
-            // 
-            // ProductBindingSource
-            // 
-            this.ProductBindingSource.DataSource = typeof(EntityCache.Bussines.ProductBussines);
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // mnuView
             // 
@@ -167,6 +160,7 @@
             this.mnuView.Name = "mnuView";
             this.mnuView.Size = new System.Drawing.Size(180, 24);
             this.mnuView.Text = "مشاهده";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -179,6 +173,7 @@
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(180, 24);
             this.mnuDelete.Text = "حذف کالای جاری";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // mnuEdit
             // 
@@ -186,6 +181,7 @@
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(180, 24);
             this.mnuEdit.Text = "ویرایش کالای جاری";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuInsAdv
             // 
@@ -237,11 +233,11 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Radif,
-            this.nameDataGridViewTextBoxColumn,
+            this.dgName,
             this.kindDataGridViewTextBoxColumn,
             this.colorDataGridViewTextBoxColumn,
             this.codeDataGridViewTextBoxColumn,
-            this.guidDataGridViewTextBoxColumn,
+            this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
             this.groupGuidDataGridViewTextBoxColumn,
             this.priceDataGridViewTextBoxColumn,
@@ -282,6 +278,7 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(604, 507);
             this.DGrid.TabIndex = 55704;
+            this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
             // Radif
             // 
@@ -290,12 +287,12 @@
             this.Radif.ReadOnly = true;
             this.Radif.Width = 50;
             // 
-            // nameDataGridViewTextBoxColumn
+            // dgName
             // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "عنوان";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "عنوان";
+            this.dgName.Name = "dgName";
             // 
             // kindDataGridViewTextBoxColumn
             // 
@@ -316,12 +313,12 @@
             this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
             this.codeDataGridViewTextBoxColumn.Visible = false;
             // 
-            // guidDataGridViewTextBoxColumn
+            // dgGuid
             // 
-            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
-            this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
-            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.Visible = false;
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
@@ -358,6 +355,14 @@
             this.abadDataGridViewTextBoxColumn.Name = "abadDataGridViewTextBoxColumn";
             this.abadDataGridViewTextBoxColumn.Visible = false;
             // 
+            // ProductBindingSource
+            // 
+            this.ProductBindingSource.DataSource = typeof(EntityCache.Bussines.ProductBussines);
+            // 
+            // PrdGroupBindingSource
+            // 
+            this.PrdGroupBindingSource.DataSource = typeof(EntityCache.Bussines.ProductGroupBussines);
+            // 
             // frmShowProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -378,11 +383,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShowProducts_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.PrdGroupBindingSource)).EndInit();
             this.cmPrdGroup.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ProductBindingSource)).EndInit();
             this.cmProduct.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PrdGroupBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -407,11 +412,11 @@
         private System.Windows.Forms.ContextMenuStrip cmProduct;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn kindDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn colorDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn groupGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;

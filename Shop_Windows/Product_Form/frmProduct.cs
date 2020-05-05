@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using EntityCache.Bussines;
 using PacketParser.Services;
 using Shop_Windows.Classes;
+using Shop_Windows.Notification_Form;
 
 namespace Shop_Windows.Product_Form
 {
@@ -22,6 +23,7 @@ namespace Shop_Windows.Product_Form
         private PictureBox _orGpicBox;
         private PictureBox _fakepicBox;
         private string _picNameJari = "";
+        private List<ProductPicturesBussines> _listIlages = new List<ProductPicturesBussines>();
         private async Task LoadGroup()
         {
             try
@@ -53,6 +55,31 @@ namespace Shop_Windows.Product_Form
                     var group = await ProductGroupBussines.GetAsync(cls.GroupGuid);
                     lblCode.Text = group.Code;
                 }
+
+                if (cls?.Guid == Guid.Empty)
+                    await NextCode();
+                if (cls?.GroupGuid == Guid.Empty && GroupBindingSource.Count > 0)
+                    cmbGroup.SelectedIndex = 0;
+
+                ImageAddressList.Clear();
+                if (cls?.ImageList != null && cls?.ImageList.Count != 0)
+                    foreach (var image in cls?.ImageList)
+                        ImageAddressList.Add(image.Path);
+                txtName.Focus();
+                Make_Picture_Boxes(ImageAddressList);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async Task NextCode()
+        {
+            try
+            {
+                var prd = await ProductBussines.NextCode();
+                txtCode.Text = prd;
             }
             catch (Exception ex)
             {
@@ -63,6 +90,13 @@ namespace Shop_Windows.Product_Form
         {
             InitializeComponent();
             cls = new ProductBussines();
+        }
+        public frmProduct(Guid guid, bool isShowMode)
+        {
+            InitializeComponent();
+            cls = ProductBussines.Get(guid);
+            grpAccount.Enabled = !isShowMode;
+            btnFinish.Enabled = !isShowMode;
         }
         private void Make_Picture_Boxes(List<string> lst)
         {
@@ -296,6 +330,80 @@ namespace Shop_Windows.Product_Form
             try
             {
                 pic.Size = new Size(62, 63);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void btnFinish_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    if (cls.Guid == Guid.Empty)
+                        cls.Guid = Guid.NewGuid();
+
+                    if (string.IsNullOrEmpty(txtName.Text))
+                    {
+                        frmNotification.PublicInfo.ShowMessage("عنوان کالا نمی تواند خالی باشد");
+                        txtName.Focus();
+                        return;
+                    }
+
+                    if (string.IsNullOrEmpty(txtCode.Text))
+                    {
+                        frmNotification.PublicInfo.ShowMessage("کد کالا نمی تواند خالی باشد");
+                        txtCode.Focus();
+                        return;
+                    }
+
+                    if (!await ProductBussines.CheckName(cls.Guid, txtName.Text.Trim()))
+                    {
+                        frmNotification.PublicInfo.ShowMessage("عنوان وارد شده تکراری است");
+                        txtName.Focus();
+                        return;
+                    }
+
+                    cls.Name = txtName.Text.Trim();
+                    cls.Description = txtDesc.Text;
+                    cls.GroupGuid = (Guid)cmbGroup.SelectedValue;
+                    cls.Code = lblCode.Text + txtCode.Text;
+                    cls.Abad = txtAbad.Text;
+                    cls.Color = txtColor.Text;
+                    cls.HalfCode = txtCode.Text;
+                    cls.Kind = txtKind.Text;
+                    cls.Price = txtPrice.Text.ParseToDecimal();
+                    foreach (var item in ImageAddressList)
+                    {
+                        var img = new ProductPicturesBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            Path = item,
+                            Modified = DateTime.Now,
+                            PrdGuid = cls.Guid
+                        };
+                        _listIlages.Add(img);
+                    }
+
+                    cls.ImageList = _listIlages;
+
+                    var res = await cls.SaveAsync();
+                    if (res.HasError)
+                    {
+                        frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                        return;
+                    }
+                    DialogResult = DialogResult.OK;
+                    frmLoading.PublicInfo.ShowForm();
+                    Close();
+                }
+                catch (Exception exception)
+                {
+                    WebErrorLog.ErrorInstence.StartErrorLog(exception);
+                }
             }
             catch (Exception ex)
             {

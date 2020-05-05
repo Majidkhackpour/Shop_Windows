@@ -489,6 +489,7 @@
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Silver;
             this.btnFinish.ThemeAware = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // line1
             // 

@@ -199,5 +199,81 @@ namespace Shop_Windows.Product_Form
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        private async void mnuEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmProduct(guid, false);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await LoadProducts(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void mnuDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                if (MessageBox.Show($@"آیا از حذف {DGrid[dgName.Index, DGrid.CurrentRow.Index].Value} اطمینان دارید؟", "حذف", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No) return;
+                var prd = await ProductBussines.GetAsync(guid);
+                var res = await prd.RemoveAsync();
+                if (res.HasError)
+                {
+                    frmNotification.PublicInfo.ShowMessage(res.ErrorMessage);
+                    return;
+                }
+                frmLoading.PublicInfo.ShowForm();
+                await LoadProducts(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                await LoadProducts(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DGrid.Rows[e.RowIndex].Cells["Radif"].Value = e.RowIndex + 1;
+        }
+
+        private async void mnuView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmProduct(guid, true);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await LoadProducts(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
     }
 }
