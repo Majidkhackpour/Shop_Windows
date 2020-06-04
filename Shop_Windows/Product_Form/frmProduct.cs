@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Advertise.Notification_Form;
 using EntityCache.Bussines;
 using PacketParser.Services;
-using Shop_Windows.Classes;
-using Shop_Windows.Notification_Form;
 
 namespace Shop_Windows.Product_Form
 {
@@ -43,28 +39,28 @@ namespace Shop_Windows.Product_Form
             {
                 await LoadGroup();
                 txtName.Text = cls?.Name;
-                cmbGroup.SelectedValue = cls?.GroupGuid;
-                txtAbad.Text = cls?.Abad;
-                txtPrice.Text = cls?.Price.ToString();
-                txtKind.Text = cls?.Kind;
-                txtColor.Text = cls?.Color;
-                txtCode.Text = cls?.HalfCode;
-                ImageAddressList = cls?.ImageList.Select(q => q.Path).ToList();
-                if (cls != null && cls.GroupGuid != Guid.Empty)
-                {
-                    var group = await ProductGroupBussines.GetAsync(cls.GroupGuid);
-                    lblCode.Text = group.Code;
-                }
+                //cmbGroup.SelectedValue = cls?.GroupGuid;
+                //txtAbad.Text = cls?.Abad;
+                //txtPrice.Text = cls?.Price.ToString();
+                //txtKind.Text = cls?.Kind;
+                //txtColor.Text = cls?.Color;
+                //txtCode.Text = cls?.HalfCode;
+               // ImageAddressList = cls?.ImageList.Select(q => q.Path).ToList();
+                //if (cls != null && cls.GroupGuid != Guid.Empty)
+                //{
+                //    var group = await ProductGroupBussines.GetAsync(cls.GroupGuid);
+                //    lblCode.Text = group.Code;
+                //}
 
                 if (cls?.Guid == Guid.Empty)
                     await NextCode();
-                if (cls?.GroupGuid == Guid.Empty && GroupBindingSource.Count > 0)
-                    cmbGroup.SelectedIndex = 0;
+                //if (cls?.GroupGuid == Guid.Empty && GroupBindingSource.Count > 0)
+                //    cmbGroup.SelectedIndex = 0;
 
                 ImageAddressList.Clear();
-                if (cls?.ImageList != null && cls?.ImageList.Count != 0)
-                    foreach (var image in cls?.ImageList)
-                        ImageAddressList.Add(image.Path);
+                //if (cls?.ImageList != null && cls?.ImageList.Count != 0)
+                //    foreach (var image in cls?.ImageList)
+                //        ImageAddressList.Add(image.Path);
                 txtName.Focus();
                 Make_Picture_Boxes(ImageAddressList);
             }
@@ -155,72 +151,72 @@ namespace Shop_Windows.Product_Form
 
         private void txtName_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2:txtName);
+            txtSetter.Focus(txtName);
         }
 
         private void txtCode_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtCode);
+            txtSetter.Focus(txtCode);
         }
 
         private void txtAbad_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtAbad);
+            txtSetter.Focus(txtAbad);
         }
 
         private void txtPrice_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtPrice);
+            txtSetter.Focus(txtPrice);
         }
 
         private void txtKind_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtKind);
+            txtSetter.Focus(txtKind);
         }
 
         private void txtColor_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtColor);
+            txtSetter.Focus(txtColor);
         }
 
         private void txtDesc_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtDesc);
+            txtSetter.Focus(txtDesc);
         }
 
         private void txtDesc_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtDesc);
+            txtSetter.Follow(txtDesc);
         }
 
         private void txtColor_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtColor);
+            txtSetter.Follow(txtColor);
         }
 
         private void txtKind_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtKind);
+            txtSetter.Follow(txtKind);
         }
 
         private void txtPrice_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtPrice);
+            txtSetter.Follow(txtPrice);
         }
 
         private void txtAbad_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtAbad);
+            txtSetter.Follow(txtAbad);
         }
 
         private void txtName_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtName);
+            txtSetter.Follow(txtName);
         }
 
         private void txtCode_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtCode);
+            txtSetter.Follow(txtCode);
         }
 
         private async void frmProduct_Load(object sender, EventArgs e)
@@ -369,19 +365,19 @@ namespace Shop_Windows.Product_Form
 
                     cls.Name = txtName.Text.Trim();
                     cls.Description = txtDesc.Text;
-                    cls.GroupGuid = (Guid)cmbGroup.SelectedValue;
+                    //cls.GroupGuid = (Guid)cmbGroup.SelectedValue;
                     cls.Code = lblCode.Text + txtCode.Text;
-                    cls.Abad = txtAbad.Text;
-                    cls.Color = txtColor.Text;
-                    cls.HalfCode = txtCode.Text;
-                    cls.Kind = txtKind.Text;
+                    //cls.Abad = txtAbad.Text;
+                    //cls.Color = txtColor.Text;
+                    //cls.HalfCode = txtCode.Text;
+                    //cls.Kind = txtKind.Text;
                     cls.Price = txtPrice.Text.ParseToDecimal();
                     foreach (var item in ImageAddressList)
                     {
                         var img = new ProductPicturesBussines()
                         {
                             Guid = Guid.NewGuid(),
-                            Path = item,
+                            //Path = item,
                             Modified = DateTime.Now,
                             PrdGuid = cls.Guid
                         };

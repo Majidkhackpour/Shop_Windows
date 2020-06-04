@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using Advertise.DivarRobot_Form;
 using EntityCache.Bussines;
 using PacketParser.Services;
 using Shop_Windows.Classes;
 using Shop_Windows.Customer_Form;
-using Shop_Windows.DivarRobot_Form;
 using Shop_Windows.Product_Form;
 
 namespace Shop_Windows

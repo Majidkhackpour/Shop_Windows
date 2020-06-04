@@ -2,10 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Advertise.Notification_Form;
 using EntityCache.Bussines;
 using PacketParser.Services;
-using Shop_Windows.Classes;
-using Shop_Windows.Notification_Form;
 
 namespace Shop_Windows.Product_Form
 {

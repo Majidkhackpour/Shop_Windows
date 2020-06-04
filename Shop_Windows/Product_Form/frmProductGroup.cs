@@ -2,10 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Advertise.Notification_Form;
 using EntityCache.Bussines;
 using PacketParser.Services;
-using Shop_Windows.Classes;
-using Shop_Windows.Notification_Form;
 
 namespace Shop_Windows.Product_Form
 {
@@ -79,22 +78,22 @@ namespace Shop_Windows.Product_Form
 
         private void txtName_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtName);
+            txtSetter.Focus( txtName);
         }
 
         private void txtDesc_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtDesc);
+            txtSetter.Focus( txtDesc);
         }
 
         private void txtName_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtName);
+            txtSetter.Follow( txtName);
         }
 
         private void txtDesc_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtDesc);
+            txtSetter.Follow( txtDesc);
         }
 
         private async void frmProductGroup_Load(object sender, EventArgs e)

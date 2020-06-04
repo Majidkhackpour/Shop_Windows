@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketParser", "..\..\WebSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServerPersistence", "..\..\WebService\WebService\SqlServerPersistence\SqlServerPersistence.csproj", "{8DC0AF9F-14EF-4CEF-88FD-0D12969A1200}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advertise", "..\..\Advertise\Advertise\Advertise\Advertise.csproj", "{67B99113-00B7-4D52-B7FA-054FF7124B63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8DC0AF9F-14EF-4CEF-88FD-0D12969A1200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DC0AF9F-14EF-4CEF-88FD-0D12969A1200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DC0AF9F-14EF-4CEF-88FD-0D12969A1200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67B99113-00B7-4D52-B7FA-054FF7124B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B99113-00B7-4D52-B7FA-054FF7124B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B99113-00B7-4D52-B7FA-054FF7124B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B99113-00B7-4D52-B7FA-054FF7124B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

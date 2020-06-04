@@ -2,11 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Advertise.Notification_Form;
 using EntityCache.Bussines;
 using PacketParser;
 using PacketParser.Services;
-using Shop_Windows.Classes;
-using Shop_Windows.Notification_Form;
 
 namespace Shop_Windows.Customer_Form
 {
@@ -91,72 +90,72 @@ namespace Shop_Windows.Customer_Form
 
         private void txtName_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtName);
+            txtSetter.Focus(txtName);
         }
 
         private void txtNationalCode_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtNationalCode);
+            txtSetter.Focus(txtNationalCode);
         }
 
         private void txtTell1_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtTell1);
+            txtSetter.Focus(txtTell1);
         }
 
         private void txtTell2_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtTell2);
+            txtSetter.Focus(txtTell2);
         }
 
         private void txtDesc_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtDesc);
+            txtSetter.Focus(txtDesc);
         }
 
         private void txtAddress_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtAddress);
+            txtSetter.Focus(txtAddress);
         }
 
         private void txtPostalCode_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtPostalCode);
+            txtSetter.Focus(txtPostalCode);
         }
 
         private void txtPostalCode_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtPostalCode);
+            txtSetter.Follow(txtPostalCode);
         }
 
         private void txtAddress_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtAddress);
+            txtSetter.Follow(txtAddress);
         }
 
         private void txtDesc_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtDesc);
+            txtSetter.Follow(txtDesc);
         }
 
         private void txtTell1_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtTell1);
+            txtSetter.Follow(txtTell1);
         }
 
         private void txtTell2_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtTell2);
+            txtSetter.Follow(txtTell2);
         }
 
         private void txtName_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtName);
+            txtSetter.Follow(txtName);
         }
 
         private void txtNationalCode_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtNationalCode);
+            txtSetter.Follow(txtNationalCode);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
