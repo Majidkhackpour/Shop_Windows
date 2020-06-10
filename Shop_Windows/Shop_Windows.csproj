@@ -156,11 +156,23 @@
     <Compile Include="Product_Form\frmProduct.Designer.cs">
       <DependentUpon>frmProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product_Form\frmProductFeatures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_Form\frmProductFeatures.Designer.cs">
+      <DependentUpon>frmProductFeatures.cs</DependentUpon>
+    </Compile>
     <Compile Include="Product_Form\frmProductGroup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Product_Form\frmProductGroup.Designer.cs">
       <DependentUpon>frmProductGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product_Form\frmShowProductFeatures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_Form\frmShowProductFeatures.Designer.cs">
+      <DependentUpon>frmShowProductFeatures.cs</DependentUpon>
     </Compile>
     <Compile Include="Product_Form\frmShowProducts.cs">
       <SubType>Form</SubType>
@@ -185,8 +197,14 @@
     <EmbeddedResource Include="Product_Form\frmProduct.resx">
       <DependentUpon>frmProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Product_Form\frmProductFeatures.resx">
+      <DependentUpon>frmProductFeatures.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Product_Form\frmProductGroup.resx">
       <DependentUpon>frmProductGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product_Form\frmShowProductFeatures.resx">
+      <DependentUpon>frmShowProductFeatures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Product_Form\frmShowProducts.resx">
       <DependentUpon>frmShowProducts.cs</DependentUpon>
@@ -205,6 +223,7 @@
     <None Include="Properties\DataSources\EntityCache.Bussines.CustomerBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.CustomerGroupBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.DivarCategoryBussines.datasource" />
+    <None Include="Properties\DataSources\EntityCache.Bussines.FeatureBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.ProductBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.ProductGroupBussines.datasource" />
     <None Include="Properties\DataSources\EntityCache.Bussines.SimcardBussines.datasource" />

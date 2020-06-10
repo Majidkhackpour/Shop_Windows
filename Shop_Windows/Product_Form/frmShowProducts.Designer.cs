@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowProducts));
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuDeleteCustGroup = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,16 +52,17 @@
             this.cmProduct = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kindDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mnuComment = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imageNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.abadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shortDescDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PrdGroupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmPrdGroup.SuspendLayout();
@@ -158,20 +160,20 @@
             // 
             this.mnuView.ForeColor = System.Drawing.Color.Silver;
             this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(180, 24);
+            this.mnuView.Size = new System.Drawing.Size(182, 24);
             this.mnuView.Text = "مشاهده";
             this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(179, 6);
             // 
             // mnuDelete
             // 
             this.mnuDelete.ForeColor = System.Drawing.Color.Silver;
             this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(180, 24);
+            this.mnuDelete.Size = new System.Drawing.Size(182, 24);
             this.mnuDelete.Text = "حذف کالای جاری";
             this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
@@ -179,7 +181,7 @@
             // 
             this.mnuEdit.ForeColor = System.Drawing.Color.Silver;
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(180, 24);
+            this.mnuEdit.Size = new System.Drawing.Size(182, 24);
             this.mnuEdit.Text = "ویرایش کالای جاری";
             this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
@@ -187,7 +189,7 @@
             // 
             this.mnuInsAdv.ForeColor = System.Drawing.Color.Silver;
             this.mnuInsAdv.Name = "mnuInsAdv";
-            this.mnuInsAdv.Size = new System.Drawing.Size(180, 24);
+            this.mnuInsAdv.Size = new System.Drawing.Size(182, 24);
             this.mnuInsAdv.Text = "درج کالای جدید";
             this.mnuInsAdv.Click += new System.EventHandler(this.mnuInsAdv_Click);
             // 
@@ -200,10 +202,12 @@
             this.mnuEdit,
             this.mnuDelete,
             this.toolStripMenuItem5,
+            this.mnuComment,
+            this.toolStripMenuItem1,
             this.mnuView});
             this.cmProduct.Name = "contextMenuStrip1";
             this.cmProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmProduct.Size = new System.Drawing.Size(181, 128);
+            this.cmProduct.Size = new System.Drawing.Size(183, 158);
             // 
             // DGrid
             // 
@@ -233,47 +237,46 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Radif,
-            this.dgName,
-            this.kindDataGridViewTextBoxColumn,
-            this.colorDataGridViewTextBoxColumn,
             this.codeDataGridViewTextBoxColumn,
+            this.dgName,
+            this.priceDataGridViewTextBoxColumn,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
-            this.groupGuidDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn,
+            this.createDateDataGridViewTextBoxColumn,
+            this.imageNameDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
-            this.abadDataGridViewTextBoxColumn});
+            this.shortDescDataGridViewTextBoxColumn});
             this.DGrid.ContextMenuStrip = this.cmProduct;
             this.DGrid.DataSource = this.ProductBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGrid.Location = new System.Drawing.Point(3, 51);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.DGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.DGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.DGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(604, 507);
@@ -287,6 +290,24 @@
             this.Radif.ReadOnly = true;
             this.Radif.Width = 50;
             // 
+            // mnuComment
+            // 
+            this.mnuComment.ForeColor = System.Drawing.Color.Silver;
+            this.mnuComment.Name = "mnuComment";
+            this.mnuComment.Size = new System.Drawing.Size(182, 24);
+            this.mnuComment.Text = "نمایش نظرات کاربران";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(179, 6);
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "کد کالا";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            // 
             // dgName
             // 
             this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -294,24 +315,14 @@
             this.dgName.HeaderText = "عنوان";
             this.dgName.Name = "dgName";
             // 
-            // kindDataGridViewTextBoxColumn
+            // priceDataGridViewTextBoxColumn
             // 
-            this.kindDataGridViewTextBoxColumn.DataPropertyName = "Kind";
-            this.kindDataGridViewTextBoxColumn.HeaderText = "جنس";
-            this.kindDataGridViewTextBoxColumn.Name = "kindDataGridViewTextBoxColumn";
-            // 
-            // colorDataGridViewTextBoxColumn
-            // 
-            this.colorDataGridViewTextBoxColumn.DataPropertyName = "Color";
-            this.colorDataGridViewTextBoxColumn.HeaderText = "رنگ";
-            this.colorDataGridViewTextBoxColumn.Name = "colorDataGridViewTextBoxColumn";
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.Visible = false;
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.priceDataGridViewTextBoxColumn.HeaderText = "قیمت";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             // 
             // dgGuid
             // 
@@ -327,19 +338,19 @@
             this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
-            // groupGuidDataGridViewTextBoxColumn
+            // createDateDataGridViewTextBoxColumn
             // 
-            this.groupGuidDataGridViewTextBoxColumn.DataPropertyName = "GroupGuid";
-            this.groupGuidDataGridViewTextBoxColumn.HeaderText = "GroupGuid";
-            this.groupGuidDataGridViewTextBoxColumn.Name = "groupGuidDataGridViewTextBoxColumn";
-            this.groupGuidDataGridViewTextBoxColumn.Visible = false;
+            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "CreateDate";
+            this.createDateDataGridViewTextBoxColumn.HeaderText = "CreateDate";
+            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
+            this.createDateDataGridViewTextBoxColumn.Visible = false;
             // 
-            // priceDataGridViewTextBoxColumn
+            // imageNameDataGridViewTextBoxColumn
             // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.Visible = false;
+            this.imageNameDataGridViewTextBoxColumn.DataPropertyName = "ImageName";
+            this.imageNameDataGridViewTextBoxColumn.HeaderText = "ImageName";
+            this.imageNameDataGridViewTextBoxColumn.Name = "imageNameDataGridViewTextBoxColumn";
+            this.imageNameDataGridViewTextBoxColumn.Visible = false;
             // 
             // descriptionDataGridViewTextBoxColumn
             // 
@@ -348,12 +359,12 @@
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             this.descriptionDataGridViewTextBoxColumn.Visible = false;
             // 
-            // abadDataGridViewTextBoxColumn
+            // shortDescDataGridViewTextBoxColumn
             // 
-            this.abadDataGridViewTextBoxColumn.DataPropertyName = "Abad";
-            this.abadDataGridViewTextBoxColumn.HeaderText = "Abad";
-            this.abadDataGridViewTextBoxColumn.Name = "abadDataGridViewTextBoxColumn";
-            this.abadDataGridViewTextBoxColumn.Visible = false;
+            this.shortDescDataGridViewTextBoxColumn.DataPropertyName = "ShortDesc";
+            this.shortDescDataGridViewTextBoxColumn.HeaderText = "ShortDesc";
+            this.shortDescDataGridViewTextBoxColumn.Name = "shortDescDataGridViewTextBoxColumn";
+            this.shortDescDataGridViewTextBoxColumn.Visible = false;
             // 
             // ProductBindingSource
             // 
@@ -411,16 +422,21 @@
         private System.Windows.Forms.ToolStripMenuItem mnuInsAdv;
         private System.Windows.Forms.ContextMenuStrip cmProduct;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn kindDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn colorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn groupGuidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn abadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn groupGuidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imageNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn abadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn shortDescDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem mnuComment;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }
 }

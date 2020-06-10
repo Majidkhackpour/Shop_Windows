@@ -43,10 +43,6 @@ namespace Shop_Windows
         {
             var t1 = new ToolTip();
             t1.SetToolTip(picExit, "خروج");
-            t1.SetToolTip(picCustGroup, "گروه مشتریان");
-            t1.SetToolTip(picProduct, "گروه کالاها");
-            t1.SetToolTip(picDivarCategory, "دسته بندی های دیوار");
-            t1.SetToolTip(picSimcard, "سیمکارت ها");
         }
 
         private void lblCustGroup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -61,11 +57,6 @@ namespace Shop_Windows
             }
         }
 
-        private void picCustGroup_Click(object sender, EventArgs e)
-        {
-            lblCustGroup_LinkClicked(null, null);
-        }
-
         private void lblProduct_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -76,11 +67,6 @@ namespace Shop_Windows
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
-        }
-
-        private void picProduct_Click(object sender, EventArgs e)
-        {
-            lblProduct_LinkClicked(null, null);
         }
 
         private async void lblDivarCategory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -107,11 +93,6 @@ namespace Shop_Windows
             }
         }
 
-        private void picDivarCategory_Click(object sender, EventArgs e)
-        {
-            lblDivarCategory_LinkClicked(null, null);
-        }
-
         private void lblSimcard_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -124,9 +105,16 @@ namespace Shop_Windows
             }
         }
 
-        private void picSimcard_Click(object sender, EventArgs e)
+        private void lblProductFeatures_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            lblSimcard_LinkClicked(null, null);
+            try
+            {
+                LoadNewForm(new frmShowProductFeatures());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
         }
     }
 }

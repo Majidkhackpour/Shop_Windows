@@ -30,24 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.picExit = new System.Windows.Forms.PictureBox();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblSimcard = new System.Windows.Forms.LinkLabel();
             this.lblDivarCategory = new System.Windows.Forms.LinkLabel();
             this.lblProduct = new System.Windows.Forms.LinkLabel();
             this.lblCustGroup = new System.Windows.Forms.LinkLabel();
             this.pnlContent = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblSimcard = new System.Windows.Forms.LinkLabel();
-            this.picSimcard = new System.Windows.Forms.PictureBox();
-            this.picDivarCategory = new System.Windows.Forms.PictureBox();
-            this.picProduct = new System.Windows.Forms.PictureBox();
-            this.picCustGroup = new System.Windows.Forms.PictureBox();
-            this.picExit = new System.Windows.Forms.PictureBox();
+            this.lblProductFeatures = new System.Windows.Forms.LinkLabel();
             this.grpAccount.SuspendLayout();
-            this.groupPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDivarCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picProduct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCustGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
+            this.groupPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpAccount
@@ -92,6 +85,20 @@
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 6;
             // 
+            // picExit
+            // 
+            this.picExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picExit.BackColor = System.Drawing.Color.Transparent;
+            this.picExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picExit.Image = global::Shop_Windows.Properties.Resources._0036;
+            this.picExit.Location = new System.Drawing.Point(1016, 3);
+            this.picExit.Name = "picExit";
+            this.picExit.Size = new System.Drawing.Size(32, 27);
+            this.picExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picExit.TabIndex = 0;
+            this.picExit.TabStop = false;
+            this.picExit.Click += new System.EventHandler(this.picExit_Click);
+            // 
             // groupPanel1
             // 
             this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -100,16 +107,13 @@
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.Controls.Add(this.lblSimcard);
             this.groupPanel1.Controls.Add(this.lblDivarCategory);
+            this.groupPanel1.Controls.Add(this.lblProductFeatures);
             this.groupPanel1.Controls.Add(this.lblProduct);
-            this.groupPanel1.Controls.Add(this.picSimcard);
-            this.groupPanel1.Controls.Add(this.picDivarCategory);
-            this.groupPanel1.Controls.Add(this.picProduct);
             this.groupPanel1.Controls.Add(this.lblCustGroup);
-            this.groupPanel1.Controls.Add(this.picCustGroup);
             this.groupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.groupPanel1.Location = new System.Drawing.Point(807, 87);
+            this.groupPanel1.Location = new System.Drawing.Point(892, 87);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(258, 601);
+            this.groupPanel1.Size = new System.Drawing.Size(173, 601);
             // 
             // 
             // 
@@ -141,6 +145,22 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 6;
             // 
+            // lblSimcard
+            // 
+            this.lblSimcard.BackColor = System.Drawing.Color.Transparent;
+            this.lblSimcard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblSimcard.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSimcard.ForeColor = System.Drawing.Color.Silver;
+            this.lblSimcard.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblSimcard.LinkColor = System.Drawing.Color.Silver;
+            this.lblSimcard.Location = new System.Drawing.Point(0, 162);
+            this.lblSimcard.Name = "lblSimcard";
+            this.lblSimcard.Size = new System.Drawing.Size(143, 23);
+            this.lblSimcard.TabIndex = 3;
+            this.lblSimcard.TabStop = true;
+            this.lblSimcard.Text = "مدیریت سیمکارت ها";
+            this.lblSimcard.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblSimcard_LinkClicked);
+            // 
             // lblDivarCategory
             // 
             this.lblDivarCategory.BackColor = System.Drawing.Color.Transparent;
@@ -149,7 +169,7 @@
             this.lblDivarCategory.ForeColor = System.Drawing.Color.Silver;
             this.lblDivarCategory.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lblDivarCategory.LinkColor = System.Drawing.Color.Silver;
-            this.lblDivarCategory.Location = new System.Drawing.Point(24, 174);
+            this.lblDivarCategory.Location = new System.Drawing.Point(0, 112);
             this.lblDivarCategory.Name = "lblDivarCategory";
             this.lblDivarCategory.Size = new System.Drawing.Size(143, 50);
             this.lblDivarCategory.TabIndex = 3;
@@ -166,7 +186,7 @@
             this.lblProduct.ForeColor = System.Drawing.Color.Silver;
             this.lblProduct.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lblProduct.LinkColor = System.Drawing.Color.Silver;
-            this.lblProduct.Location = new System.Drawing.Point(93, 114);
+            this.lblProduct.Location = new System.Drawing.Point(69, 81);
             this.lblProduct.Name = "lblProduct";
             this.lblProduct.Size = new System.Drawing.Size(74, 20);
             this.lblProduct.TabIndex = 3;
@@ -183,7 +203,7 @@
             this.lblCustGroup.ForeColor = System.Drawing.Color.Silver;
             this.lblCustGroup.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lblCustGroup.LinkColor = System.Drawing.Color.Silver;
-            this.lblCustGroup.Location = new System.Drawing.Point(77, 30);
+            this.lblCustGroup.Location = new System.Drawing.Point(53, 18);
             this.lblCustGroup.Name = "lblCustGroup";
             this.lblCustGroup.Size = new System.Drawing.Size(90, 20);
             this.lblCustGroup.TabIndex = 1;
@@ -199,94 +219,25 @@
             this.pnlContent.AutoScroll = true;
             this.pnlContent.Location = new System.Drawing.Point(1, 87);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(800, 601);
+            this.pnlContent.Size = new System.Drawing.Size(885, 601);
             this.pnlContent.TabIndex = 7;
             // 
-            // lblSimcard
+            // lblProductFeatures
             // 
-            this.lblSimcard.BackColor = System.Drawing.Color.Transparent;
-            this.lblSimcard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblSimcard.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblSimcard.ForeColor = System.Drawing.Color.Silver;
-            this.lblSimcard.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.lblSimcard.LinkColor = System.Drawing.Color.Silver;
-            this.lblSimcard.Location = new System.Drawing.Point(24, 258);
-            this.lblSimcard.Name = "lblSimcard";
-            this.lblSimcard.Size = new System.Drawing.Size(143, 23);
-            this.lblSimcard.TabIndex = 3;
-            this.lblSimcard.TabStop = true;
-            this.lblSimcard.Text = "مدیریت سیمکارت ها";
-            this.lblSimcard.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblSimcard_LinkClicked);
-            // 
-            // picSimcard
-            // 
-            this.picSimcard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picSimcard.BackColor = System.Drawing.Color.Transparent;
-            this.picSimcard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picSimcard.Image = global::Shop_Windows.Properties.Resources._057;
-            this.picSimcard.Location = new System.Drawing.Point(173, 242);
-            this.picSimcard.Name = "picSimcard";
-            this.picSimcard.Size = new System.Drawing.Size(67, 58);
-            this.picSimcard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picSimcard.TabIndex = 2;
-            this.picSimcard.TabStop = false;
-            this.picSimcard.Click += new System.EventHandler(this.picSimcard_Click);
-            // 
-            // picDivarCategory
-            // 
-            this.picDivarCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picDivarCategory.BackColor = System.Drawing.Color.Transparent;
-            this.picDivarCategory.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picDivarCategory.Image = global::Shop_Windows.Properties.Resources._008;
-            this.picDivarCategory.Location = new System.Drawing.Point(175, 167);
-            this.picDivarCategory.Name = "picDivarCategory";
-            this.picDivarCategory.Size = new System.Drawing.Size(67, 58);
-            this.picDivarCategory.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picDivarCategory.TabIndex = 2;
-            this.picDivarCategory.TabStop = false;
-            this.picDivarCategory.Click += new System.EventHandler(this.picDivarCategory_Click);
-            // 
-            // picProduct
-            // 
-            this.picProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picProduct.BackColor = System.Drawing.Color.Transparent;
-            this.picProduct.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picProduct.Image = global::Shop_Windows.Properties.Resources.P_1_95;
-            this.picProduct.Location = new System.Drawing.Point(173, 94);
-            this.picProduct.Name = "picProduct";
-            this.picProduct.Size = new System.Drawing.Size(67, 58);
-            this.picProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picProduct.TabIndex = 2;
-            this.picProduct.TabStop = false;
-            this.picProduct.Click += new System.EventHandler(this.picProduct_Click);
-            // 
-            // picCustGroup
-            // 
-            this.picCustGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picCustGroup.BackColor = System.Drawing.Color.Transparent;
-            this.picCustGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picCustGroup.Image = global::Shop_Windows.Properties.Resources._028;
-            this.picCustGroup.Location = new System.Drawing.Point(173, 12);
-            this.picCustGroup.Name = "picCustGroup";
-            this.picCustGroup.Size = new System.Drawing.Size(67, 58);
-            this.picCustGroup.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picCustGroup.TabIndex = 0;
-            this.picCustGroup.TabStop = false;
-            this.picCustGroup.Click += new System.EventHandler(this.picCustGroup_Click);
-            // 
-            // picExit
-            // 
-            this.picExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picExit.BackColor = System.Drawing.Color.Transparent;
-            this.picExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picExit.Image = global::Shop_Windows.Properties.Resources._0036;
-            this.picExit.Location = new System.Drawing.Point(1016, 3);
-            this.picExit.Name = "picExit";
-            this.picExit.Size = new System.Drawing.Size(32, 27);
-            this.picExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picExit.TabIndex = 0;
-            this.picExit.TabStop = false;
-            this.picExit.Click += new System.EventHandler(this.picExit_Click);
+            this.lblProductFeatures.AutoSize = true;
+            this.lblProductFeatures.BackColor = System.Drawing.Color.Transparent;
+            this.lblProductFeatures.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblProductFeatures.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblProductFeatures.ForeColor = System.Drawing.Color.Silver;
+            this.lblProductFeatures.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblProductFeatures.LinkColor = System.Drawing.Color.Silver;
+            this.lblProductFeatures.Location = new System.Drawing.Point(12, 51);
+            this.lblProductFeatures.Name = "lblProductFeatures";
+            this.lblProductFeatures.Size = new System.Drawing.Size(131, 20);
+            this.lblProductFeatures.TabIndex = 3;
+            this.lblProductFeatures.TabStop = true;
+            this.lblProductFeatures.Text = "مدیریت ویژگیهای محصول";
+            this.lblProductFeatures.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblProductFeatures_LinkClicked);
             // 
             // frmMain
             // 
@@ -309,13 +260,9 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.grpAccount.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDivarCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picProduct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCustGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -327,12 +274,9 @@
         private System.Windows.Forms.FlowLayoutPanel pnlContent;
         private System.Windows.Forms.PictureBox picExit;
         private System.Windows.Forms.LinkLabel lblCustGroup;
-        private System.Windows.Forms.PictureBox picCustGroup;
         private System.Windows.Forms.LinkLabel lblProduct;
-        private System.Windows.Forms.PictureBox picProduct;
         private System.Windows.Forms.LinkLabel lblDivarCategory;
-        private System.Windows.Forms.PictureBox picDivarCategory;
         private System.Windows.Forms.LinkLabel lblSimcard;
-        private System.Windows.Forms.PictureBox picSimcard;
+        private System.Windows.Forms.LinkLabel lblProductFeatures;
     }
 }
