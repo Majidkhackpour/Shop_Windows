@@ -50,10 +50,10 @@
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInsAdv = new System.Windows.Forms.ToolStripMenuItem();
             this.cmProduct = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mnuComment = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -209,6 +209,19 @@
             this.cmProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmProduct.Size = new System.Drawing.Size(183, 158);
             // 
+            // mnuComment
+            // 
+            this.mnuComment.ForeColor = System.Drawing.Color.Silver;
+            this.mnuComment.Name = "mnuComment";
+            this.mnuComment.Size = new System.Drawing.Size(182, 24);
+            this.mnuComment.Text = "نمایش نظرات کاربران";
+            this.mnuComment.Click += new System.EventHandler(this.mnuComment_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(179, 6);
+            // 
             // DGrid
             // 
             this.DGrid.AllowUserToAddRows = false;
@@ -289,18 +302,6 @@
             this.Radif.Name = "Radif";
             this.Radif.ReadOnly = true;
             this.Radif.Width = 50;
-            // 
-            // mnuComment
-            // 
-            this.mnuComment.ForeColor = System.Drawing.Color.Silver;
-            this.mnuComment.Name = "mnuComment";
-            this.mnuComment.Size = new System.Drawing.Size(182, 24);
-            this.mnuComment.Text = "نمایش نظرات کاربران";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(179, 6);
             // 
             // codeDataGridViewTextBoxColumn
             // 

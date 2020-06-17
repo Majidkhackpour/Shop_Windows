@@ -48,7 +48,7 @@ namespace Shop_Windows.Customer_Form
         {
             try
             {
-                var liat = await CustomerBussines.GetAllAsync(search);
+                var liat = await CustomerBussines.GetAllAsync(search, GroupGuid);
                 CustomerBindingSource.DataSource = liat.OrderBy(q => q.Name).ToList();
             }
             catch (Exception e)
@@ -120,10 +120,18 @@ namespace Shop_Windows.Customer_Form
             try
             {
                 var node = trvGroup.SelectedNode;
-                if (node.Text == "همه گروه ها") return;
-                var group = await CustomerGroupBussines.GetAsync(Guid.Parse(node.Name));
-                if (group != null)
-                    GroupGuid = group.Guid;
+                if (node.Text == "همه گروه ها")
+                {
+                    GroupGuid = Guid.Empty;
+                }
+                else
+                {
+                    var group = await CustomerGroupBussines.GetAsync(Guid.Parse(node.Name));
+                    if (group != null)
+                        GroupGuid = group.Guid;
+                }
+
+                await LoadCustomers(txtSearch.Text);
             }
             catch (Exception ex)
             {

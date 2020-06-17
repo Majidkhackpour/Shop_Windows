@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -268,6 +269,22 @@ namespace Shop_Windows.Product_Form
                 var frm = new frmProduct(guid, true);
                 if (frm.ShowDialog() == DialogResult.OK)
                     await LoadProducts(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void mnuComment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                var frm = new frmProductComment(guid);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {
