@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Advertise.Email_Form;
 using EntityCache.Bussines;
 using PacketParser.Services;
 
@@ -85,6 +86,22 @@ namespace Shop_Windows.Product_Form
                 var comm = await PrdCommentBussines.GetAsync(guid);
                 if (comm == null) return;
                 txtDesc.Text = comm.Comment;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void mnuEmail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var rec = DGrid[dgEmail.Index, DGrid.CurrentRow.Index].Value.ToString();
+                var frm = new frmSendEmail(rec);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -32,12 +32,14 @@
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.picExit = new System.Windows.Forms.PictureBox();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblSettings = new System.Windows.Forms.LinkLabel();
             this.lblSimcard = new System.Windows.Forms.LinkLabel();
             this.lblDivarCategory = new System.Windows.Forms.LinkLabel();
+            this.lblProductFeatures = new System.Windows.Forms.LinkLabel();
             this.lblProduct = new System.Windows.Forms.LinkLabel();
             this.lblCustGroup = new System.Windows.Forms.LinkLabel();
             this.pnlContent = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblProductFeatures = new System.Windows.Forms.LinkLabel();
+            this.lblSlider = new System.Windows.Forms.LinkLabel();
             this.grpAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             this.groupPanel1.SuspendLayout();
@@ -105,6 +107,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.BackColor = System.Drawing.Color.White;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel1.Controls.Add(this.lblSlider);
+            this.groupPanel1.Controls.Add(this.lblSettings);
             this.groupPanel1.Controls.Add(this.lblSimcard);
             this.groupPanel1.Controls.Add(this.lblDivarCategory);
             this.groupPanel1.Controls.Add(this.lblProductFeatures);
@@ -145,6 +149,22 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 6;
             // 
+            // lblSettings
+            // 
+            this.lblSettings.BackColor = System.Drawing.Color.Transparent;
+            this.lblSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblSettings.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSettings.ForeColor = System.Drawing.Color.Silver;
+            this.lblSettings.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblSettings.LinkColor = System.Drawing.Color.Silver;
+            this.lblSettings.Location = new System.Drawing.Point(0, 194);
+            this.lblSettings.Name = "lblSettings";
+            this.lblSettings.Size = new System.Drawing.Size(143, 23);
+            this.lblSettings.TabIndex = 3;
+            this.lblSettings.TabStop = true;
+            this.lblSettings.Text = "تنظیمات برنامه";
+            this.lblSettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblSettings_LinkClicked);
+            // 
             // lblSimcard
             // 
             this.lblSimcard.BackColor = System.Drawing.Color.Transparent;
@@ -176,6 +196,23 @@
             this.lblDivarCategory.TabStop = true;
             this.lblDivarCategory.Text = "دریافت دسته بندی ها از سایت دیوار";
             this.lblDivarCategory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDivarCategory_LinkClicked);
+            // 
+            // lblProductFeatures
+            // 
+            this.lblProductFeatures.AutoSize = true;
+            this.lblProductFeatures.BackColor = System.Drawing.Color.Transparent;
+            this.lblProductFeatures.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblProductFeatures.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblProductFeatures.ForeColor = System.Drawing.Color.Silver;
+            this.lblProductFeatures.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblProductFeatures.LinkColor = System.Drawing.Color.Silver;
+            this.lblProductFeatures.Location = new System.Drawing.Point(12, 51);
+            this.lblProductFeatures.Name = "lblProductFeatures";
+            this.lblProductFeatures.Size = new System.Drawing.Size(131, 20);
+            this.lblProductFeatures.TabIndex = 3;
+            this.lblProductFeatures.TabStop = true;
+            this.lblProductFeatures.Text = "مدیریت ویژگیهای محصول";
+            this.lblProductFeatures.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblProductFeatures_LinkClicked);
             // 
             // lblProduct
             // 
@@ -222,22 +259,21 @@
             this.pnlContent.Size = new System.Drawing.Size(885, 601);
             this.pnlContent.TabIndex = 7;
             // 
-            // lblProductFeatures
+            // lblSlider
             // 
-            this.lblProductFeatures.AutoSize = true;
-            this.lblProductFeatures.BackColor = System.Drawing.Color.Transparent;
-            this.lblProductFeatures.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblProductFeatures.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblProductFeatures.ForeColor = System.Drawing.Color.Silver;
-            this.lblProductFeatures.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.lblProductFeatures.LinkColor = System.Drawing.Color.Silver;
-            this.lblProductFeatures.Location = new System.Drawing.Point(12, 51);
-            this.lblProductFeatures.Name = "lblProductFeatures";
-            this.lblProductFeatures.Size = new System.Drawing.Size(131, 20);
-            this.lblProductFeatures.TabIndex = 3;
-            this.lblProductFeatures.TabStop = true;
-            this.lblProductFeatures.Text = "مدیریت ویژگیهای محصول";
-            this.lblProductFeatures.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblProductFeatures_LinkClicked);
+            this.lblSlider.BackColor = System.Drawing.Color.Transparent;
+            this.lblSlider.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblSlider.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSlider.ForeColor = System.Drawing.Color.Silver;
+            this.lblSlider.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblSlider.LinkColor = System.Drawing.Color.Silver;
+            this.lblSlider.Location = new System.Drawing.Point(0, 225);
+            this.lblSlider.Name = "lblSlider";
+            this.lblSlider.Size = new System.Drawing.Size(143, 23);
+            this.lblSlider.TabIndex = 3;
+            this.lblSlider.TabStop = true;
+            this.lblSlider.Text = "مدیریت اسلایدرهای سایت";
+            this.lblSlider.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblSlider_LinkClicked);
             // 
             // frmMain
             // 
@@ -278,5 +314,7 @@
         private System.Windows.Forms.LinkLabel lblDivarCategory;
         private System.Windows.Forms.LinkLabel lblSimcard;
         private System.Windows.Forms.LinkLabel lblProductFeatures;
+        private System.Windows.Forms.LinkLabel lblSettings;
+        private System.Windows.Forms.LinkLabel lblSlider;
     }
 }

@@ -44,7 +44,7 @@ namespace Shop_Windows.Customer_Form
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
-        private async Task LoadCustomers(string search=null)
+        private async Task LoadCustomers(string search = null)
         {
             try
             {

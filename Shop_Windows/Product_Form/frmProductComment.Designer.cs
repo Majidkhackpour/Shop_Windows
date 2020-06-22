@@ -46,8 +46,8 @@
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.webSiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,8 +108,8 @@
             this.DGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Radif,
-            this.nameDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn,
+            this.dgName,
+            this.dgEmail,
             this.webSiteDataGridViewTextBoxColumn,
             this.dgGuid,
             this.modifiedDataGridViewTextBoxColumn,
@@ -185,6 +185,7 @@
             this.mnuEmail.Name = "mnuEmail";
             this.mnuEmail.Size = new System.Drawing.Size(148, 24);
             this.mnuEmail.Text = "ارسال ایمیل";
+            this.mnuEmail.Click += new System.EventHandler(this.mnuEmail_Click);
             // 
             // ProductBindingSource
             // 
@@ -271,19 +272,19 @@
             this.Radif.ReadOnly = true;
             this.Radif.Width = 50;
             // 
-            // nameDataGridViewTextBoxColumn
+            // dgName
             // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "فرستنده";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.dgName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgName.DataPropertyName = "Name";
+            this.dgName.HeaderText = "فرستنده";
+            this.dgName.Name = "dgName";
             // 
-            // emailDataGridViewTextBoxColumn
+            // dgEmail
             // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "ایمیل";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Width = 250;
+            this.dgEmail.DataPropertyName = "Email";
+            this.dgEmail.HeaderText = "ایمیل";
+            this.dgEmail.Name = "dgEmail";
+            this.dgEmail.Width = 250;
             // 
             // webSiteDataGridViewTextBoxColumn
             // 
@@ -378,8 +379,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn webSiteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;

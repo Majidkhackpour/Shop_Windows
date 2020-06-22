@@ -6,6 +6,8 @@ using PacketParser.Services;
 using Shop_Windows.Classes;
 using Shop_Windows.Customer_Form;
 using Shop_Windows.Product_Form;
+using Shop_Windows.Settings_Form;
+using Shop_Windows.Slider_Form;
 
 namespace Shop_Windows
 {
@@ -110,6 +112,30 @@ namespace Shop_Windows
             try
             {
                 LoadNewForm(new frmShowProductFeatures());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblSettings_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                LoadNewForm(new frmSettings());
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void lblSlider_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                LoadNewForm(new frmShowSlider());
             }
             catch (Exception ex)
             {
