@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSliderMain));
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtEndDate = new System.Windows.Forms.MaskedTextBox();
+            this.txtStartDate = new System.Windows.Forms.MaskedTextBox();
+            this.chbActive = new System.Windows.Forms.CheckBox();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.picImage = new System.Windows.Forms.PictureBox();
             this.btnInsPic = new DevComponents.DotNetBar.ButtonX();
@@ -39,14 +42,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtURL = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.chbActive = new System.Windows.Forms.CheckBox();
             this.lblHeader = new System.Windows.Forms.Label();
             this.uC_Date1 = new UC_Date.UC_Date();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.txtStartDate = new System.Windows.Forms.MaskedTextBox();
-            this.txtEndDate = new System.Windows.Forms.MaskedTextBox();
             this.grpAccount.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
@@ -100,6 +100,47 @@
             // 
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 0;
+            // 
+            // txtEndDate
+            // 
+            this.txtEndDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtEndDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEndDate.ForeColor = System.Drawing.Color.Silver;
+            this.txtEndDate.Location = new System.Drawing.Point(244, 194);
+            this.txtEndDate.Mask = "0000/00/00";
+            this.txtEndDate.Name = "txtEndDate";
+            this.txtEndDate.Size = new System.Drawing.Size(327, 27);
+            this.txtEndDate.TabIndex = 3;
+            this.txtEndDate.ValidatingType = typeof(System.DateTime);
+            this.txtEndDate.Enter += new System.EventHandler(this.txtEndDate_Enter);
+            this.txtEndDate.Leave += new System.EventHandler(this.txtEndDate_Leave);
+            // 
+            // txtStartDate
+            // 
+            this.txtStartDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtStartDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtStartDate.ForeColor = System.Drawing.Color.Silver;
+            this.txtStartDate.Location = new System.Drawing.Point(244, 136);
+            this.txtStartDate.Mask = "0000/00/00";
+            this.txtStartDate.Name = "txtStartDate";
+            this.txtStartDate.Size = new System.Drawing.Size(327, 27);
+            this.txtStartDate.TabIndex = 2;
+            this.txtStartDate.ValidatingType = typeof(System.DateTime);
+            this.txtStartDate.Enter += new System.EventHandler(this.txtStartDate_Enter);
+            this.txtStartDate.Leave += new System.EventHandler(this.txtStartDate_Leave);
+            // 
+            // chbActive
+            // 
+            this.chbActive.AutoSize = true;
+            this.chbActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbActive.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbActive.ForeColor = System.Drawing.Color.Silver;
+            this.chbActive.Location = new System.Drawing.Point(434, 230);
+            this.chbActive.Name = "chbActive";
+            this.chbActive.Size = new System.Drawing.Size(137, 24);
+            this.chbActive.TabIndex = 4;
+            this.chbActive.Text = "این اسلایدر فعال باشد";
+            this.chbActive.UseVisualStyleBackColor = false;
             // 
             // groupPanel2
             // 
@@ -169,6 +210,7 @@
             this.btnInsPic.Text = "افزودن تصویر ...";
             this.btnInsPic.TextColor = System.Drawing.Color.Silver;
             this.btnInsPic.ThemeAware = true;
+            this.btnInsPic.Click += new System.EventHandler(this.btnInsPic_Click);
             // 
             // label9
             // 
@@ -244,19 +286,6 @@
             this.label3.TabIndex = 33;
             this.label3.Text = "URL";
             // 
-            // chbActive
-            // 
-            this.chbActive.AutoSize = true;
-            this.chbActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.chbActive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbActive.ForeColor = System.Drawing.Color.Silver;
-            this.chbActive.Location = new System.Drawing.Point(434, 230);
-            this.chbActive.Name = "chbActive";
-            this.chbActive.Size = new System.Drawing.Size(137, 24);
-            this.chbActive.TabIndex = 4;
-            this.chbActive.Text = "این اسلایدر فعال باشد";
-            this.chbActive.UseVisualStyleBackColor = false;
-            // 
             // lblHeader
             // 
             this.lblHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -306,6 +335,7 @@
             this.btnFinish.Text = "تایید (F5)";
             this.btnFinish.TextColor = System.Drawing.Color.Silver;
             this.btnFinish.ThemeAware = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // btnCancel
             // 
@@ -325,34 +355,6 @@
             this.btnCancel.TextColor = System.Drawing.Color.Silver;
             this.btnCancel.ThemeAware = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // txtStartDate
-            // 
-            this.txtStartDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtStartDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtStartDate.ForeColor = System.Drawing.Color.Silver;
-            this.txtStartDate.Location = new System.Drawing.Point(244, 136);
-            this.txtStartDate.Mask = "0000/00/00";
-            this.txtStartDate.Name = "txtStartDate";
-            this.txtStartDate.Size = new System.Drawing.Size(327, 27);
-            this.txtStartDate.TabIndex = 2;
-            this.txtStartDate.ValidatingType = typeof(System.DateTime);
-            this.txtStartDate.Enter += new System.EventHandler(this.txtStartDate_Enter);
-            this.txtStartDate.Leave += new System.EventHandler(this.txtStartDate_Leave);
-            // 
-            // txtEndDate
-            // 
-            this.txtEndDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtEndDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEndDate.ForeColor = System.Drawing.Color.Silver;
-            this.txtEndDate.Location = new System.Drawing.Point(244, 194);
-            this.txtEndDate.Mask = "0000/00/00";
-            this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.Size = new System.Drawing.Size(327, 27);
-            this.txtEndDate.TabIndex = 3;
-            this.txtEndDate.ValidatingType = typeof(System.DateTime);
-            this.txtEndDate.Enter += new System.EventHandler(this.txtEndDate_Enter);
-            this.txtEndDate.Leave += new System.EventHandler(this.txtEndDate_Leave);
             // 
             // frmSliderMain
             // 
@@ -377,6 +379,8 @@
             this.Name = "frmSliderMain";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmSliderMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSliderMain_KeyDown);
             this.grpAccount.ResumeLayout(false);
             this.grpAccount.PerformLayout();
             this.groupPanel2.ResumeLayout(false);

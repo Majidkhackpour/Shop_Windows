@@ -14,7 +14,7 @@ namespace Shop_Windows.Slider_Form
             try
             {
                 var liat = await SliderBussines.GetAllAsync(search);
-                SliderBindingSource.DataSource = liat.ToList();
+                SliderBindingSource.DataSource = liat.ToSortableBindingList();
             }
             catch (Exception e)
             {

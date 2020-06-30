@@ -50,7 +50,7 @@ namespace Shop_Windows.Product_Form
             try
             {
                 var liat = await ProductBussines.GetAllAsync(search);
-                ProductBindingSource.DataSource = liat.OrderBy(q => q.Name).ToList();
+                ProductBindingSource.DataSource = liat.OrderBy(q => q.Name).ToSortableBindingList();
             }
             catch (Exception e)
             {

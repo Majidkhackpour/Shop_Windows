@@ -15,7 +15,7 @@ namespace Shop_Windows.Product_Form
             try
             {
                 var liat = await FeatureBussines.GetAllAsync(search);
-                ProductBindingSource.DataSource = liat.OrderBy(q => q.Title).ToList();
+                ProductBindingSource.DataSource = liat.OrderBy(q => q.Title).ToSortableBindingList();
             }
             catch (Exception ex)
             {

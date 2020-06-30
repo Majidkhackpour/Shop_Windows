@@ -49,7 +49,7 @@ namespace Shop_Windows.Customer_Form
             try
             {
                 var liat = await CustomerBussines.GetAllAsync(search, GroupGuid);
-                CustomerBindingSource.DataSource = liat.OrderBy(q => q.Name).ToList();
+                CustomerBindingSource.DataSource = liat.OrderBy(q => q.Name).ToSortableBindingList();
             }
             catch (Exception e)
             {
